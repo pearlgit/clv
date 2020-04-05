@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>CLV | HSH</title>
+	<link rel="stylesheet" href="../css/w3.css">
+	<link rel="stylesheet" href="../css/uikit.min.css">
+
+	<script src="../js/jquery-3.4.1.min.js"></script>
+	<script src="../js/uikit.min.js"></script>
+	<script src="../js/uikit-icons.min.js"></script>
+	<script src="../js/md5.js"></script>
+	<script src="../js/scrypt.js"></script>
+	<script src="../js/sha3-512.js" type="text/javascript"></script>
+	<script src="../js/clipboard.min.js"></script>
+
+	<style>
+		html {
+			margin: 0;
+			padding: 0;
+		}
+
+		body {
+			margin: 0;
+			padding: 1em;
+			height: 100vh;
+			width: 100vw;
+			background: #222;
+			overflow-y: hidden;
+		}
+
+		* {
+			box-sizing: border-box;
+		}
+
+		#myBody {
+			margin: 0;
+			padding: 0;
+			display: flex;
+			flex-direction: column;
+			width: 100%;
+			height: 100%;
+		}
+
+		#out1{
+			color: white;
+			background: white;
+			font-size: 0.01pt;
+		}
+		::-moz-selection { /* Code for Firefox */
+			color: yellow;
+			background: yellow;
+		}
+
+		::selection {
+			color: yellow;
+			background: yellow;
+		}
+	</style>
+
+	
+</head>
+
+<body>
+	<script type="text/javascript">
+		$(function () {
+
+			new ClipboardJS('.btn');
+
+			$("input[name='radio1']").click(function () {
+				$('#hideDiv').css('display', ($(this).val() === 'd') ? 'none':'block');
+			});
+
+			$("button[type='submit']").click(function setLForm() {
+				console.log("Form Submitted");
+
+				var m6=5;
+				var t1 = $("#in1").val();
+				var t2 = $("#in2").val();
+				var t3 = $("#in3").val();
+				var t4 = $("#in4").val();
+				var rad1 = $("input[name=radio1]:checked").val();
+				var t5 = $("#in5").val();
+				
+				var t0 = Math.trunc( (Math.pow(5,0.5) * Math.pow( Math.PI, Math.pow(Math.E,Math.PI) )) / ( Math.pow(73, 0.5) * Math.pow(Math.E, Math.PI)) );
+				var t0a = [];
+				t0a = t0.toString();
+
+				var st = t0a[0];
+				st = t3[st];
+				st = t4[st];
+
+				function mdrep(t,l){
+					var x;
+					for(x=0; x<l; x++){
+						t = md5(t);
+					}
+					return t;
+				}
+				var hmacText = mdrep(t1,st);
+				var hmacKeyInput = mdrep(t2,st);
+				var hmacObj = new jsSHA("SHA3-512", "TEXT");
+				hmacObj.setHMACKey(hmacKeyInput, "TEXT");
+				hmacObj.update(hmacText);
+
+				var hmacOut = hmacObj.getHMAC("B64");
+
+				function getPos(str, subStr, i) { 
+					return str.split(subStr, i).join(subStr).length; 
+				}
+				
+				var a0 = "ABCDEFGHIJKLM123";
+				var a1 = "NOPQRSTUVWXYZ456";
+				var a2 = "abcdefghijklm789";
+				var a3 = "nopqrstuvwxyz057";
+				var a4 = [];
+
+				if(rad1 === 'd'){
+					a4 = "!@#$%^&*()[]_+,.";
+				}
+				else if(rad1 === 'c'){
+					a4 = t5;
+					console.log(a4);
+				}
+
+				var textOUT = [];
+				textOUT = md5(hmacOut);
+
+				var textOUTF = [];
+
+				for(var k=0; k<textOUT.length; k++){
+					var textOUTdec = parseInt(textOUT[k], 16);
+					var m6 = textOUTdec % 5;
+					if(m6===0){
+						textOUTF[k]=a0[textOUTdec];
+					}
+					else if(m6===1){
+						textOUTF[k]=a1[textOUTdec];
+					}
+					else if(m6===2){
+						textOUTF[k]=a2[textOUTdec];
+					}
+					else if(m6===3){
+						textOUTF[k]=a3[textOUTdec];
+					}
+					else if(m6===4){
+						textOUTF[k]=a4[textOUTdec];
+					}
+				}
+
+				textOUTF = textOUTF.join('');
+				textOUTF = t3+textOUTF;
+
+				$("#out1").val(textOUTF);
+				$("#in0").val(t0);
+			});
+			
+
+		});
+	</script>
+	<div id="myBody">
+
+		<form name="qrpsForm" class="uk-grid-small" uk-grid onsubmit="return false">
+			<div class="uk-width-1-1@s">
+				<input id="in1" class="uk-input uk-dark" type="password" placeholder="I1...">
+			</div>
+			<div class="uk-width-1-1@s">
+				<input id="in2" class="uk-input" type="password" placeholder="I2...">
+			</div>
+			<div class="uk-width-1-1@s">
+				<input id="in3" class="uk-input" type="password" placeholder="S#1...">
+			</div>
+			<div class="uk-width-1-1@s">
+				<input id="in4" class="uk-input" type="password" placeholder="S#2...">
+			</div>
+			<div class="uk-width-1-1@s">
+				<label><input class="uk-radio" type="radio" name="radio1" value="d" checked> Dft</label>
+				<label><input class="uk-radio" type="radio" name="radio1" value="c"> Ctm</label>
+			</div>
+			<div class="uk-width-1-1@s uk-margin-small" id="hideDiv" style="display: none;">
+				<input id="in5" class="uk-input" type="password" placeholder="C*...">
+			</div>
+		</form>
+		<br>
+		<button class="w3-button w3-block w3-aqua w3-hover-green" type="submit" form="qrpsForm" value="Submit">CLOVE Encode</button>
+		<br>
+		<button class="btn w3-button w3-block w3-aqua w3-hover-green" data-clipboard-target="#out1">
+			See
+		</button>
+		<br>
+		<div class="uk-width-1-1@s">
+			<input id="in0" class="uk-input uk-dark" type="text" placeholder="I0...">
+		</div>
+	</div>
+
+	<br><br><br><br><br><br><br><br><br>
+	<textarea name="out1" class="myFlex" id="out1" cols="30" rows="30" placeholder="qrps..."></textarea>
+</body>
+
+</html>

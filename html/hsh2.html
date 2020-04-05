@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/sha3-512.js"></script>
+    <script src="js/md5.js"></script>
+    <script src="js/scrypt.js" type="text/javascript"></script>
+
+    <style>
+        body{
+            margin:0;padding:0;
+        }
+        #myBody{
+            margin:0;
+            padding:0;
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            height: 100%;
+        }
+        .myFlex{
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-start;
+            font-size: xx-large;
+        }
+        #in1{
+            height: 50vh;
+        }
+        #in2{
+            height:20vh;
+        }
+        #subBtn{
+            font-size: initial;
+            background: greenyellow;
+            color: #222;
+        }
+        #out1{
+        }
+        input[type="submit"]:focus {
+            background:none;
+            outline: none;
+            border:none;
+        }
+        input[type="submit"]:hover {
+            background: none;
+            border: none;
+            outline: none;
+            box-shadow: none;
+        }
+    </style>
+    <script>
+        $(function () {
+            $("#subBtn").click(function(){
+                var textIN1 = $("#in1").val();
+                
+                const password = new buffer.SlowBuffer("anyPassword".normalize('NFKC'));
+                const salt = new buffer.SlowBuffer("someSalt".normalize('NFKC'));
+
+                const N = 1024, r = 8, p = 1;
+                const dkLen = 32;
+
+                function updateInterface(progress) {
+                    document.getElementById("progress").textContent = Math.trunc(100 * progress);
+                }
+
+                // Async
+                const keyPromise = scrypt.scrypt(password, salt, N, r, p, dkLen, updateInterface);
+
+                keyPromise.then(function(key) {
+                    console.log("Derived Key (async): ", key);
+                });
+
+                var i=0;
+                md5H = md5(textIN1);
+                for(i=0; i<10; i++){
+                    console.log(md5H);
+                    md5H = md5(md5H);
+                }
+
+                var hmacText = md5(textIN1);
+                var hmacKeyInput = $("#in2").val();
+                var hmacObj = new jsSHA("SHA3-512","TEXT");
+                hmacObj.setHMACKey(hmacKeyInput,"TEXT");
+                hmacObj.update(hmacText);
+                
+                var hmacOut = hmacObj.getHMAC("B64");
+
+                var myList  = "1b438e6d7f2c9a05";
+                /*
+                var res = str.substring(9, 4);
+                var output = [a.slice(0, position), b, a.slice(position)].join('');*
+                function h2d(h) {return parseInt(h,16);}
+                function hex2a(hexx) {
+                    var hex = hexx.toString();//force conversion
+                    var str = '';
+                    for (var i = 0; (i < hex.length && hex.substr(i, 2) !== '00'); i += 2)
+                        str += String.fromCharCode(parseInt(hex.substr(i, 2), 16));
+                    return str;
+                }
+                var hex2A = hex2a(md5H+hmacOut);
+                var hex2dec = h2d(md5H);*/
+                textOUT = hmacOut.replace(/[^A-Za-z0-9]/g, '');
+                $("#out1").val(textOUT);
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id="myBody">
+        <textarea name="in1" class="myFlex" id="in1" cols="30" rows="10" placeholder="Type your text here..."></textarea>
+        <textarea name="in2" class="myFlex" id="in2" cols="30" rows="10" placeholder="Type your Key here..."></textarea>
+        <input type="button" class="myFlex" value="Submit" id="subBtn">
+        <textarea name="out1" class="myFlex" id="out1" cols="30" rows="10" placeholder="MD5 output will be displayed here..."></textarea>
+    </div>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>CLOVE | AL15</title>
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet"/>
+	<link rel="stylesheet" href="../css/w3.css">
+	<link rel="stylesheet" href="../css/uikit.min.css">
+	<link rel="stylesheet" href="../css/clove.css">
+	<script src="../js/jquery-3.4.1.min.js"></script>
+	<script src="../js/uikit.min.js"></script>
+	<script src="../js/uikit-icons.min.js"></script>
+	<script src="../js/clove.js"></script>
+</head>
+
+<body>
+	<div id="title">EE</div>
+	<div class="qr-row">
+		<div id="time"></div>
+		&nbsp;&nbsp;
+		<div id="day"></div>
+		&nbsp;&nbsp;
+		<div id="RI"></div>
+		<div id="Freq"></div>
+	</div>
+	<div class="qr-row">
+		<div id="cdtimer">Today's RI - 20</div>
+	</div>
+	<div class="qr-row">
+		<div id="cdtimer2">CountDown - <span id="hh">hh</span>:<span id="mm">mm</span>:<span id="ss">ss</span></div>
+	</div>
+	<div class="qr-row">
+		<div id="cdtimer3">CountDown Starts in - <span id="mm3">1</span> mins</div>
+	</div>
+
+	<br>
+	<form id="alarm" name="alarmForm" onsubmit="return false">
+		<fieldset class="uk-fieldset">
+			<legend class="uk-legend">Week Max <span id="maxToday">MaxToday</span> </legend>
+			<div class="uk-margin uk-grid-small uk-child-width-auto uk-grid" style="width: 100%; display: flex;">
+				<label><input class="uk-input" name="maxLimit" type="number" style="width: 100%; display: flex;"></label>
+			</div>
+		</fieldset>
+
+		<fieldset class="uk-fieldset">
+			<legend class="uk-legend">Week Type <span id="weekType">weekType</span> </legend>
+			<div class="uk-margin uk-grid-small uk-child-width-auto uk-grid">
+				<label><input class="uk-radio" name="weekRadio" value="1" type="radio" checked> Odd Week</label>
+				<label><input class="uk-radio" name="weekRadio" value="2" type="radio"> Even Week</label>
+			</div>
+		</fieldset>
+
+		<fieldset class="uk-fieldset">
+			<legend class="uk-legend">Start Time <span id="startTime">startTime</span> </legend>
+			<div class="uk-margin uk-grid-small uk-child-width-auto uk-grid">
+				<label><input class="uk-radio" name="startRadio" value="1" type="radio" checked> Now</label>
+				<label><input class="uk-radio" name="startRadio" value="5" type="radio"> x5</label>
+				<label><input class="uk-radio" name="startRadio" value="10" type="radio"> x10</label>
+				<label><input class="uk-radio" name="startRadio" value="15" type="radio"> x15</label>
+				<label><input class="uk-radio" name="startRadio" value="30" type="radio"> x30</label>
+				<label><input class="uk-radio" name="startRadio" value="60" type="radio"> x60</label>
+			</div>
+		</fieldset>
+	</form>
+	<button class="uk-button button-primary" type="submit" form="alarm" value="Submit">Start Timer</button>
+	<br>
+	<audio id="myAudio" muted controls controlsList="nodownload">
+		<source src="../media/analog-watch-alarm.mp3" type="audio/mpeg">
+		Your browser does not support the audio element.
+	</audio>
+	
+	<!--br>
+	<div class="uk-button-group">
+		<button id="play" class="w3-bar-item w3-button w3-green w3-hover-aqua">Play</button>
+		<button id="pause" class="w3-bar-item w3-button w3-orange w3-hover-aqua">Pause</button>
+		<button id="stop" class="w3-bar-item w3-button w3-red w3-hover-aqua">Stop</button>
+	</div-->
+</body>
+
+</html>

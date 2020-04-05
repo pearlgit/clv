@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>DragKitDemo</title>
+
+	<script src="../js/jquery-3.4.1.min.js"></script>
+	<script src="../js/draggabilly.pkgd.min.js"></script>
+
+	<style>
+		html,
+		body,
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+			height: 100vh;
+			width: 100vw;
+			background: #222;
+		}
+
+		#main {
+			height: 90vh;
+			width: 100%;
+			background: #829;
+			color: #ddd;
+			top: 0;
+			padding: 1em;
+		}
+
+		#menu {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: flex-start;
+			background: #ddd;
+			color: #222;
+			width: 100%;
+			height: 120vh;
+			position: fixed;
+		}
+
+		#menuBar {
+			min-height: 50px;
+			height: 10vh;
+			width: 100%;
+			background: #6d8;
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			justify-content: center;
+		}
+
+		#menuList {
+			display: flex;
+			flex-direction: column;
+			width: 100%;
+			height: 70vh;
+			overflow-y: scroll;
+		}
+
+		.list {
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			justify-content: center;
+			width: 100%;
+			min-height: 10vh;
+			background: #f60;
+			margin-top: 2px;
+		}
+	</style>
+
+	<script type="text/javascript">
+		$(function () {
+			var mh = $("#menuBar").height();
+			$("#menu").css({
+				bottom: window.innerHeight * -1.2 + mh
+			});
+
+			var UPos = Math.floor(window.innerHeight * 0.2);
+			var UL = Math.floor(window.innerHeight * 0.4);
+			var LL = Math.floor(window.innerHeight * 0.7);
+			var NPos = Math.floor(window.innerHeight * 0.9);
+			var openf = 0;
+			var disf = 0;
+			console.log("L01: " + UPos + "/" + UL + "/" + LL + "/" + NPos);
+
+			var draggie = new Draggabilly(".draggable", {
+				axis: "y"
+			});
+
+			draggie.on("dragEnd", function (event, pointer) {
+				console.log(pointer.y);
+				var dragPosY = draggie.position.y;
+				if (openf === 0 && disf === 0) {
+					if (dragPosY <= LL) {
+						draggie.setPosition(0, UPos);
+						openf = 1;
+						draggie.disable();
+						disf = 1;
+					} else if (dragPosY > LL) {
+						draggie.setPosition(0, NPos);
+						openf = 0;
+						disf = 0;
+					}
+				} else if (openf === 1 && disf === 0) {
+					if (dragPosY >= UL) {
+						draggie.setPosition(0, NPos);
+						openf = 0;
+						disf = 0;
+					} else if (dragPosY < UL) {
+						draggie.setPosition(0, UPos);
+						openf === 1;
+					}
+				}
+			});
+
+			var lastScrollTop = 0;
+			$("#menuList").scroll(function (event) {
+				var st = $(this).scrollTop();
+				if (st > lastScrollTop) {
+					// downscroll code
+				} else {
+					// upscroll code
+				}
+				lastScrollTop = st;
+			});
+			/*
+			if (openf === 1) {
+			  draggie.setPosition(0, UPos);
+			  draggie.on("dragMove", function (event, pointer, mv) {
+			    draggie.setPosition(0, UPos);
+			    if (mv.y < 0) {
+			      draggie.setPosition(0, UPos);
+			      $("#menuList").scrollTop($("#menuList").scrollTop() - mv.y);
+			    } else if (mv.y > 0 && $("#menuList").scrollTop() != 0) {
+			      draggie.setPosition(0, UPos);
+			      $("#menuList").scrollTop($("#menuList").scrollTop() - mv.y);
+			    }
+			  });
+			}*/
+		});
+	</script>
+</head>
+
+<body>
+	<div id="main">
+		Main
+	</div>
+	<div id="menu" class="draggable">
+		<div id="menuBar">Draggable Menu Barr</div>
+		<div id="menuList" class="drago">
+			<div class="list">List01</div>
+			<div class="list">List02</div>
+			<div class="list">List03</div>
+			<div class="list">List04</div>
+			<div class="list">List05</div>
+			<div class="list">List06</div>
+			<div class="list">List07</div>
+			<div class="list">List08</div>
+			<div class="list">List09</div>
+			<div class="list">List10</div>
+			<div class="list">List11</div>
+			<div class="list">List12</div>
+			<div class="list">List13</div>
+			<div class="list">List14</div>
+			<div class="list">List15</div>
+			<div class="list">List16</div>
+			<div class="list">List17</div>
+			<div class="list">List18</div>
+			<div class="list">List19</div>
+			<div class="list">List20</div>
+		</div>
+	</div>
+</body>
+
+</html>
