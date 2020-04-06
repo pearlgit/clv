@@ -6,8 +6,16 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>DragKitDemo</title>
 
+	<link rel="stylesheet" href="../css/uikit.min.css">
+	<link rel="stylesheet" href="../css/w3.css">
+	<link rel="stylesheet" href="../css/swiper.min.css">
+	<link rel="stylesheet" href="../css/mmenu.css">
+	<link rel="stylesheet" href="../css/clove.css">
 	<script src="../js/jquery-3.4.1.min.js"></script>
 	<script src="../js/draggabilly.pkgd.min.js"></script>
+	<script src="../js/mmenu.js"></script>
+	<script src="../js/uikit.min.js"></script>
+	<script src="../js/uikit-icons.min.js"></script>
 
 	<style>
 		html,
@@ -16,18 +24,36 @@
 			margin: 0;
 			padding: 0;
 			box-sizing: border-box;
-			height: 100vh;
-			width: 100vw;
-			background: #222;
 		}
 
 		#main {
+			display: flex;
+			flex-direction: column;
 			height: 90vh;
-			width: 100%;
+			width: 100vw;
 			background: #829;
 			color: #ddd;
 			top: 0;
-			padding: 1em;
+		}
+
+		#mainContent{
+			background: #615;
+			width: 100vw;
+			overflow-y: scroll;
+		}
+
+		.menuCont{
+			width: 5px;
+			position: fixed;
+			box-shadow: inset #f00 2px 2px, inset #f00 -2px -2px;
+			top:20vh;
+			background: transparent;
+		}
+		.vh150{
+			height: 150vh;
+		}
+		.vh80{
+			height: 80vh;
 		}
 
 		#menu {
@@ -38,7 +64,7 @@
 			background: #ddd;
 			color: #222;
 			width: 100%;
-			height: 120vh;
+			height: 80vh;
 			position: fixed;
 		}
 
@@ -53,15 +79,40 @@
 			justify-content: center;
 		}
 
-		#menuList {
+		#menuListCont {
+			display: flex;
+			flex-direction: row;
+			width: 200vw;
+			height: 70vh;
+			overflow: hidden;
+			align-items: flex-start;
+			justify-content: flex-start;
+		}
+
+		.menuPane{
 			display: flex;
 			flex-direction: column;
 			width: 100%;
 			height: 70vh;
 			overflow-y: scroll;
+			position: fixed;
+			left: 0;
+			transition: ease-in-out 500ms;
+		}
+		.curPane{
+			transform: translateX(0vw);
+		}
+		.hidePane{
+			transform: translateX(-100vw);
+		}
+		.rightPane{
+			transform: translateX(100vw);
+		}
+		.noScroll{
+			overflow: hidden;
 		}
 
-		.list {
+		.menuPane > a {
 			display: flex;
 			flex-direction: row;
 			align-items: center;
@@ -76,9 +127,7 @@
 	<script type="text/javascript">
 		$(function () {
 			var mh = $("#menuBar").height();
-			$("#menu").css({
-				bottom: window.innerHeight * -1.2 + mh
-			});
+			$("#menu").css({bottom: window.innerHeight * -0.8 + mh});
 
 			var UPos = Math.floor(window.innerHeight * 0.2);
 			var UL = Math.floor(window.innerHeight * 0.4);
@@ -86,95 +135,193 @@
 			var NPos = Math.floor(window.innerHeight * 0.9);
 			var openf = 0;
 			var disf = 0;
-			console.log("L01: " + UPos + "/" + UL + "/" + LL + "/" + NPos);
 
 			var draggie = new Draggabilly(".draggable", {
-				axis: "y"
+				axis: "y", containment: '.menuCont'
 			});
 
 			draggie.on("dragEnd", function (event, pointer) {
-				console.log(pointer.y);
 				var dragPosY = draggie.position.y;
-				if (openf === 0 && disf === 0) {
-					if (dragPosY <= LL) {
+				console.log("L02: "+dragPosY+"/"+openf);
+				if (openf === 0) {
+					console.log("L03: Entered openf=0");
+					if (dragPosY < LL) {
 						draggie.setPosition(0, UPos);
 						openf = 1;
-						draggie.disable();
-						disf = 1;
-					} else if (dragPosY > LL) {
-						draggie.setPosition(0, NPos);
-						openf = 0;
-						disf = 0;
+						$("body")
+						$("#menuC").removeClass("vh150");
+						$("#menuC").addClass("vh80");
 					}
-				} else if (openf === 1 && disf === 0) {
-					if (dragPosY >= UL) {
+					else if(dragPosY >= LL){
+						draggie.setPosition(0, NPos);
+					}
+				}
+				else if(openf === 1){
+					console.log("L04: Entered openf=1");
+					if(dragPosY > UL){
 						draggie.setPosition(0, NPos);
 						openf = 0;
-						disf = 0;
-					} else if (dragPosY < UL) {
+					}
+					else if(dragPosY <= UL){
 						draggie.setPosition(0, UPos);
-						openf === 1;
 					}
 				}
 			});
 
-			var lastScrollTop = 0;
-			$("#menuList").scroll(function (event) {
-				var st = $(this).scrollTop();
-				if (st > lastScrollTop) {
-					// downscroll code
-				} else {
-					// upscroll code
+			draggie.on("pointerMove",function(event, pointer, mVector){
+				if(openf === 1){
+					if(mVector.y < 0){
+						$(".curPane").scrollTop($(".curPane").scrollTop() - mVector.y*0.1);
+					}
+					else if(mVector.y > 0){
+						$(".curPane").scrollTop($(".curPane").scrollTop() - mVector.y*0.1);
+					}
+					if($(".curPane").scrollTop() === 0 ){
+						$("#menuC").addClass("vh150");
+						$("#menuC").removeClass("vh80");
+					}
+					else if($(".curPane").scrollTop() != 0){
+						$("#menuC").removeClass("vh150");
+						$("#menuC").addClass("vh80");
+					}
 				}
-				lastScrollTop = st;
 			});
-			/*
-			if (openf === 1) {
-			  draggie.setPosition(0, UPos);
-			  draggie.on("dragMove", function (event, pointer, mv) {
-			    draggie.setPosition(0, UPos);
-			    if (mv.y < 0) {
-			      draggie.setPosition(0, UPos);
-			      $("#menuList").scrollTop($("#menuList").scrollTop() - mv.y);
-			    } else if (mv.y > 0 && $("#menuList").scrollTop() != 0) {
-			      draggie.setPosition(0, UPos);
-			      $("#menuList").scrollTop($("#menuList").scrollTop() - mv.y);
-			    }
-			  });
-			}*/
+
+			
+			$(".menuPane > a.menuLink").click(function(){
+				var paneHREF = $(this).attr('href');
+				var paneHREF1 = paneHREF[0];
+				console.log(paneHREF);
+				if(paneHREF1 === '#'){
+					if($(paneHREF).hasClass("hidePane")){
+						$(paneHREF).removeClass("hidePane");
+						$(paneHREF).addClass("curPane");
+						$(this).parent().removeClass("curPane");
+						$(this).parent().addClass("rightPane");
+					}
+					else if($(paneHREF).hasClass("rightPane")){
+						$(paneHREF).removeClass("rightPane");
+						$(paneHREF).addClass("curPane");
+						$(this).parent().removeClass("curPane");
+						$(this).parent().addClass("hidePane");
+					}
+				}
+			});
+
+
 		});
 	</script>
 </head>
 
-<body>
+<body class="noScroll">
 	<div id="main">
-		Main
-	</div>
-	<div id="menu" class="draggable">
-		<div id="menuBar">Draggable Menu Barr</div>
-		<div id="menuList" class="drago">
-			<div class="list">List01</div>
-			<div class="list">List02</div>
-			<div class="list">List03</div>
-			<div class="list">List04</div>
-			<div class="list">List05</div>
-			<div class="list">List06</div>
-			<div class="list">List07</div>
-			<div class="list">List08</div>
-			<div class="list">List09</div>
-			<div class="list">List10</div>
-			<div class="list">List11</div>
-			<div class="list">List12</div>
-			<div class="list">List13</div>
-			<div class="list">List14</div>
-			<div class="list">List15</div>
-			<div class="list">List16</div>
-			<div class="list">List17</div>
-			<div class="list">List18</div>
-			<div class="list">List19</div>
-			<div class="list">List20</div>
+		<div id="mainContent">
+			Main
+			<br>
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est, doloremque, unde esse fuga incidunt labore eaque dolorem quis praesentium quo enim, voluptates corporis quas necessitatibus reiciendis ducimus culpa explicabo sint?</p>
+			<p>Tempora rem commodi porro facere adipisci optio facilis, perferendis excepturi dolore asperiores error, quis ab! Asperiores sequi autem quia odio dolor, laborum, amet eius ipsam, quo quibusdam inventore quidem! Alias.</p>
+			<p>Alias totam vitae eum quod culpa recusandae quas ipsa perferendis, magni magnam nihil sed odit vero explicabo corporis perspiciatis, quis voluptatibus expedita fugit fuga eaque, deleniti quidem? Alias, dolorum a!</p>
+			<p>Error magni quibusdam sint quam corporis! Nostrum aut molestias inventore quidem, consectetur libero adipisci voluptas architecto sed ab debitis repellendus animi esse laboriosam aliquid! Atque placeat animi magni eveniet aliquid!</p>
+			<p>Voluptatibus hic at aliquam obcaecati, veritatis labore adipisci cupiditate! Nihil officiis cupiditate blanditiis. Error sed rerum sequi unde recusandae eum culpa. Pariatur eveniet vitae iste nostrum, nulla neque temporibus aut.</p>
+			<p>Minima, facere. Facilis eius expedita earum commodi illum esse perspiciatis magni quae. Voluptatibus id sequi dolor libero a consequuntur sapiente repudiandae vitae. Perspiciatis culpa ipsa, eligendi odit quos excepturi et?</p>
+			<p>Repellat enim rem, numquam quo ducimus vel impedit, accusamus earum praesentium necessitatibus rerum debitis placeat tempore? Libero sint, ullam ratione magnam, earum veniam odit autem odio eos suscipit unde commodi.</p>
+			<p>Dolore nihil, porro possimus quod modi praesentium animi voluptate temporibus fugit molestias aliquam dignissimos illo recusandae beatae omnis veniam, quam dolorum culpa fuga fugiat libero debitis et? Quo, in earum?</p>
+			<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis accusamus natus omnis a nostrum. Facere quis natus quasi qui quos ea unde fugit saepe soluta accusantium eligendi odio, optio dicta.</p>
+			<p>Odit illo quisquam nesciunt a. Repudiandae libero sint eligendi, obcaecati est eius voluptatum voluptatem similique modi architecto sequi officia labore officiis perferendis expedita atque. Recusandae nesciunt molestiae at ipsum rem.</p>
+			<p>Officiis hic maxime iusto, enim aliquid earum cum labore non et fuga architecto reiciendis error cumque qui perferendis voluptatibus dolorum, nemo praesentium ut soluta? Sunt praesentium nostrum soluta natus esse.</p>
+			<p>Rem accusantium saepe odio optio, illo cupiditate recusandae, ipsa voluptas nostrum, consectetur eligendi. Dolorum, molestias! Quas nemo ratione unde praesentium architecto voluptatibus dicta quisquam tenetur earum, distinctio, minima nobis asperiores!</p>
+			<p>Magnam, libero hic reprehenderit eum cupiditate minima ullam repudiandae similique a eius corporis id, quia, quibusdam harum! Provident, natus maxime doloremque quod voluptates optio nulla non. Blanditiis nobis id commodi!</p>
+			<p>Rem in, illo repudiandae dolores obcaecati iste quod provident eaque tempore possimus assumenda veniam nostrum delectus quibusdam soluta beatae. A ipsum cum veritatis vitae quod corrupti et nulla consequuntur incidunt.</p>
+			<p>Minima nisi soluta, debitis dignissimos fuga odio officia quas voluptatum aut nemo dicta eius libero similique sit ex repudiandae consequatur aliquam illum? Ad id minima tempora aperiam exercitationem dolorem dolor?</p>
+			<p>Id rem illo obcaecati excepturi. Sint, repellendus quaerat! Ea incidunt magnam quisquam dolores? Fugiat, ratione neque. Amet reiciendis, vero nam eligendi sapiente maiores voluptatum doloremque quaerat dolore facilis non enim.</p>
+			<p>Mollitia, quasi voluptatum necessitatibus culpa excepturi earum, cum quo alias reprehenderit consequuntur voluptates deleniti et accusantium, facere sed ex. Quisquam voluptas harum, laborum perferendis tenetur libero aliquam id dolore. Omnis!</p>
+			<p>Libero laborum nam eos tempore amet incidunt. Adipisci assumenda necessitatibus placeat commodi veniam enim aspernatur inventore deleniti tenetur quo autem sed, itaque, labore quis dolores esse odio aperiam nihil sequi?</p>
+			<p>Sequi laboriosam saepe autem animi a corrupti consequatur quibusdam, quisquam vel magni nam est cumque. Aliquid ipsam id cum deserunt, voluptatem, quisquam itaque, rem voluptas adipisci sapiente ipsum totam iusto.</p>
+			<p>Quod delectus nesciunt ut numquam mollitia accusantium similique qui voluptatem laudantium corrupti quo obcaecati ea aliquid veniam explicabo ullam inventore fuga a perspiciatis id, consequuntur dolorem quidem? Similique, molestiae facilis!</p>
 		</div>
 	</div>
+	<div class="menuCont vh150" id="menuC">
+		
+		<div id="menu" class="draggable">
+			<div id="menuBar">Draggable Menu Barr</div>
+
+			<div id="menuListCont">
+				<div id="menuList00" class="menuPane curPane">
+					<a href="#menuList01" class="menuLink">Goto 01List</a>
+					<a href="https://www.google.com/">00List01</a>
+					<a href="https://www.google.com/">00List02</a>
+					<a href="https://www.google.com/">00List03</a>
+					<a href="https://www.google.com/">00List04</a>
+					<a href="https://www.google.com/">00List05</a>
+					<a href="https://www.google.com/">00List06</a>
+					<a href="https://www.google.com/">00List07</a>
+					<a href="https://www.google.com/">00List08</a>
+					<a href="https://www.google.com/">00List09</a>
+					<a href="https://www.google.com/">00List10</a>
+					<a href="https://www.google.com/">00List11</a>
+					<a href="https://www.google.com/">00List12</a>
+					<a href="https://www.google.com/">00List13</a>
+					<a href="https://www.google.com/">00List14</a>
+					<a href="https://www.google.com/">00List15</a>
+					<a href="https://www.google.com/">00List16</a>
+					<a href="https://www.google.com/">00List17</a>
+					<a href="https://www.google.com/">00List18</a>
+					<a href="https://www.google.com/">00List19</a>
+					<a href="https://www.google.com/">00List20</a>
+				</div>
+				<div id="menuList01" class="menuPane hidePane">
+					<a href="#menuList02" class="menuLink">Goto 02List</a>
+					<a href="https://www.google.com/">01List01</a>
+					<a href="https://www.google.com/">01List02</a>
+					<a href="https://www.google.com/">01List03</a>
+					<a href="https://www.google.com/">01List04</a>
+					<a href="https://www.google.com/">01List05</a>
+					<a href="https://www.google.com/">01List06</a>
+					<a href="https://www.google.com/">01List07</a>
+					<a href="https://www.google.com/">01List08</a>
+					<a href="https://www.google.com/">01List09</a>
+					<a href="https://www.google.com/">01List10</a>
+					<a href="https://www.google.com/">01List11</a>
+					<a href="https://www.google.com/">01List12</a>
+					<a href="https://www.google.com/">01List13</a>
+					<a href="https://www.google.com/">01List14</a>
+					<a href="https://www.google.com/">01List15</a>
+					<a href="https://www.google.com/">01List16</a>
+					<a href="https://www.google.com/">01List17</a>
+					<a href="https://www.google.com/">01List18</a>
+					<a href="https://www.google.com/">01List19</a>
+					<a href="https://www.google.com/">01List20</a>
+				</div>
+				<div id="menuList02" class="menuPane hidePane">
+					<a href="#menuList00" class="menuLink">Goto 00List</a>
+					<a href="https://www.google.com/">02List01</a>
+					<a href="https://www.google.com/">02List02</a>
+					<a href="https://www.google.com/">02List03</a>
+					<a href="https://www.google.com/">02List04</a>
+					<a href="https://www.google.com/">02List05</a>
+					<a href="https://www.google.com/">02List06</a>
+					<a href="https://www.google.com/">02List07</a>
+					<a href="https://www.google.com/">02List08</a>
+					<a href="https://www.google.com/">02List09</a>
+					<a href="https://www.google.com/">02List10</a>
+					<a href="https://www.google.com/">02List11</a>
+					<a href="https://www.google.com/">02List12</a>
+					<a href="https://www.google.com/">02List13</a>
+					<a href="https://www.google.com/">02List14</a>
+					<a href="https://www.google.com/">02List15</a>
+					<a href="https://www.google.com/">02List16</a>
+					<a href="https://www.google.com/">02List17</a>
+					<a href="https://www.google.com/">02List18</a>
+					<a href="https://www.google.com/">02List19</a>
+					<a href="https://www.google.com/">02List20</a>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+
+
 </body>
 
 </html>
