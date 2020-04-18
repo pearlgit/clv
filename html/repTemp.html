@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>CLV | repTemp</title>
+
+	<link rel="stylesheet" href="../css/w3.css"/>
+	<!--link rel="stylesheet" href="../css/swiper.min.css"/>
+	<link rel="stylesheet" href="../css/uikit.min.css"/>
+	<link rel="stylesheet" href="../css/repTemp.css"/-->
+
+	<script src="../js/jquery-3.4.1.min.js"></script>
+	<!--script src="../js/draggabilly.pkgd.min.js"></script>
+	<script src="../js/swiper.min.js"></script>
+	<script src="../js/uikit-icons.min.js"></script>
+	<script src="../js/uikit.min.js"></script>
+	<script src="../js/repTemp.js"></script-->
+
+	<style>
+		html, body{
+			margin: 0;
+			padding: 0;
+			font-size: large;
+		}
+		#main{
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			width: 100vw;
+			height: 100vh;
+			background: linear-gradient(to bottom, navy, royalblue);
+			color: white;
+			margin: 0;
+			padding: 0;
+		}
+		#count{
+			color: lime;
+			font-weight: bold;
+		}
+	</style>
+
+	<script type="text/javascript">
+		$(function(){
+			var cnt = 0;
+			$("#ct").html(cnt);
+			$("#shrbtn").click(function(){
+				if(cnt < 10){
+					cnt = cnt + 1;
+					$("#ct").html(cnt);
+				}
+				else if(cnt === 10){
+					$("#crgbtn").addClass("w3-lime");
+					$("#crgbtn").removeClass("w3-red");
+				}
+			});
+		});
+	</script>
+</head>
+
+<body>
+	<!--div id="main">
+		Main
+	</div>
+	<div id="navCont">
+		Nav
+		<input id="fullScreen" type="button" value="FS">
+	</div-->
+
+	<div id="main">
+		<div id="mess">
+			<h1>PayTM Free Recharge Offer</h1>
+			To get the free recharge of Rs. 999, you first need to share this message to 10 friends or families.
+		</div>
+		<div id="count">Your current Share Count is <span id="ct"></span>/10</div>
+		<div id="shareButton">
+			<input id="shrbtn" class="w3-button w3-deep-orange w3-hover-green w3-round-xxlarge" type="button" value="Share"/>
+		</div>
+		<br>
+		<div id="goto">
+			After sharing to 10 friends, press the recharge button to get the free recharge.
+		</div>
+		<div id="shareButton">
+			<input id="crgbtn" class="w3-button w3-red w3-hover-green w3-round-xxlarge" type="button" value="Recharge Rs. 999"/>
+		</div>
+	</div>
+
+</body>
+
+</html>

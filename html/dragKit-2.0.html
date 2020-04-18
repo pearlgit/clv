@@ -19,6 +19,28 @@
 	<script src="../js/uikit-icons.min.js"></script>
 
 	<style>
+		@media print {
+			* {
+				-webkit-print-color-adjust: exact;
+			}
+			body{
+				-webkit-print-color-adjust: exact;
+			}
+			#pageborder{
+			position:fixed;
+			left: 0;
+			right: 0;
+			top: 0;
+			bottom: 0;
+			width: 100vw;
+			height: 100vh;
+			box-shadow: black inset 2px 2px, black inset -2px -2px;
+			background-image: url(../media/pageBorder.svg)!important;
+			background-position: center!important;
+			background-size: cover!important;
+			background-repeat: no-repeat!important;
+			}
+		}
 		html,
 		body,
 		* {
@@ -40,7 +62,12 @@
 			right: 0;
 			top: 0;
 			bottom: 0;
-			border: 2px solid black;
+			width: 100vw;
+			height: 100vh;
+			background-image: url(../media/pageBorder.svg)!important;
+			background-position: center!important;
+			background-size: cover!important;
+			background-repeat: no-repeat!important;
 		}
 		@page {
 			-relaxed-page-width: 210mm;
@@ -63,20 +90,6 @@
 			height: 100vh;
 			column-count: 1;
 		}
-		.top{
-			display: flex;
-			flex-direction: column;
-			align-self: flex-end;
-			justify-self: flex-start;
-			position: absolute;
-			top:0;
-			width: 30%;
-			height: 1cm;
-			background:#222;
-			color: #ddd;
-			align-items: center;
-			justify-content: center;
-		}
 	</style>
 
 	<script type="text/javascript">
@@ -88,9 +101,7 @@
 
 <body>
 	<div class="page">
-		<div class="top">
-			hello
-		</div>
+		Page01
 	</div>
 	<div class="page">
 		Page02
@@ -99,7 +110,9 @@
 		Page03
 	</div>
 	<div id="main">
-	<div id="pageborder"></div>
+	<div id="pageborder">
+		
+	</div>
 		Main
 		<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Placeat, molestiae. Explicabo labore incidunt iste harum beatae dolor praesentium maxime ab tempore inventore eveniet minima, quasi libero eligendi magni ea aut?</p>
 		<p>Incidunt cupiditate in nisi quo, vel, perferendis ipsam iste eveniet natus, aperiam a. Iusto, repudiandae reprehenderit ab eos delectus, culpa quam provident repellat facilis ipsam magni et ex aut. Provident.</p>
