@@ -247,18 +247,19 @@ body {
 	position: fixed;
 	top: 92vh;
 	left: 0;
-	background: rgba(34, 34, 34, 0.8);
+	/*background: rgba(34, 34, 34, 0.8);*/
+	background: #000;
 	color: #ddd;
 	z-index: 95;
 }
-
+/*
 @supports (backdrop-filter: blur(10px)) or (--webkit-backdrop-filter: blur(10px)) {
 	#nav {
 		background: rgba(34, 34, 34, 0.2);
 		backdrop-filter: blur(10px);
 		--webkit-backdrop-filter: blur(10px);
 	}
-}
+}*/
 
 #navbar {
 	display: flex;
@@ -276,8 +277,9 @@ body {
 	align-items: center;
 	flex-grow: 0;
 	width: 20vw;
-	height: 100%;
+	height: 8vh;
 	box-shadow: inset #ddd 0 2px, inset rgba(221,221,221,0.4) -0 -2px;
+	font-size: large;
 }
 
 #navbar>div:hover,
@@ -288,6 +290,7 @@ body {
 
 #navbar>div:nth-child(2) {
 	flex-grow: 1;
+	font-size: normal;
 }
 
 #navmain{
@@ -314,9 +317,9 @@ body {
 	bottom: 0;
 	right: 0;
 	height: 8vh;
-	width: 2px;
+	width: 200px;
 	/*box-shadow: tomato inset 2px 2px, tomato inset -2px -2px;*/
-	background: transparent;
+	background: red;
 	z-index: 50;
 }
 .uk-modal-dialog{
@@ -339,17 +342,18 @@ body {
 	padding: 1em;
 }
 
-/*
+
 .carousel-nav{
 
-}*/
+}
 
 .carousel-nav .carousel-cell {
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	height: 6vh;
-	width: fit-content;
+	width: auto;
+	white-space: nowrap;
 	border-radius: 3vh;
 	color: #ddd;
 }
