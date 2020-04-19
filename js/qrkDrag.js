@@ -28,6 +28,21 @@ $(function () {
 			draggie.setPosition(0,UPos);
 		}
 	});
+	$(window).scroll(function(){
+		botPos = $("#bot").position().top;
+		contPos = $("#navCont").position().top;
+		UPos = contPos;
+		UL = Math.floor(botPos * 0.4);
+		LL = Math.floor(botPos * 0.7);
+		NPos = botPos;
+
+		if(openf === 0){
+			draggie.setPosition(0,NPos);
+		}
+		else if(openf === 1){
+			draggie.setPosition(0,UPos);
+		}
+	});
 
 	draggie.on("dragEnd",function(event,pointer){
 		var dragPosY = draggie.position.y;
