@@ -277,11 +277,21 @@ body {
 	flex-grow: 1;
 }
 
-
 #navmain{
 	height: 72vh;
 	width: calc(100% - 2vh);
 	margin: 1vh;
+}
+
+#bot{
+	display: flex;
+	position: fixed;
+	bottom: 0;
+	right: 0;
+	height: 8vh;
+	width: 20vw;
+	box-shadow: tomato inset 2px 2px, tomato inset -2px -2px;
+	background: violet;
 }
 .uk-modal-dialog{
 	border: 1px solid aqua;
