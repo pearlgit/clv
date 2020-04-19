@@ -1,4 +1,5 @@
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
+/*
 html {
 	line-height: 1.15;
 	-webkit-text-size-adjust: 100%
@@ -178,7 +179,7 @@ template {
 [hidden] {
 	display: none
 }
-
+*/
 * {
 	box-sizing: border-box;
 	-webkit-touch-callout: none;
@@ -223,7 +224,7 @@ body {
 	width: 5px;
 	background: transparent;
 	box-shadow: inset red 2px 2px, inset red -2px -2px;
-	z-index: 30;
+	z-index: 90;
 }
 
 .vh150 {
@@ -245,6 +246,7 @@ body {
 	background: rgba(222, 222, 222, 0.1);
 	backdrop-filter: blur(10px);
 	color: #ddd;
+	z-index: 95;
 }
 
 #navbar {
@@ -254,7 +256,7 @@ body {
 	justify-content: center;
 	align-items: center;
 	bottom: 0;
-
+	z-index: 96;
 }
 
 #navbar>div {
@@ -281,6 +283,7 @@ body {
 	height: 72vh;
 	width: calc(100% - 2vh);
 	margin: 1vh;
+	z-index: 98;
 }
 
 #bot{
@@ -292,6 +295,7 @@ body {
 	width: 20vw;
 	box-shadow: tomato inset 2px 2px, tomato inset -2px -2px;
 	background: violet;
+	z-index: 50;
 }
 .uk-modal-dialog{
 	border: 1px solid aqua;
