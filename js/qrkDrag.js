@@ -1,12 +1,20 @@
 $(function () {
 	console.log("init success");
-
+	alert(document.documentElement.clientHeight);
 	var UPos = Math.floor(window.innerHeight * 0.2);
 	var UL = Math.floor(window.innerHeight * 0.4);
 	var LL = Math.floor(window.innerHeight * 0.7);
 	var NPos = Math.floor(window.innerHeight * 0.92);
 	var openf = 0;
 	var diagf = 0;
+
+	$(window).resize(function(){
+		alert(document.documentElement.clientHeight);
+		UPos = Math.floor(window.innerHeight * 0.2);
+		UL = Math.floor(window.innerHeight * 0.4);
+		LL = Math.floor(window.innerHeight * 0.7);
+		NPos = Math.floor(window.innerHeight * 0.92);
+	});
 
 	var draggie = new Draggabilly(".dragg",{
 		containment:".navCont"
