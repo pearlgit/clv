@@ -243,7 +243,7 @@ body {
 	position: fixed;
 	top: 92vh;
 	left: 0;
-	background: rgba(222, 222, 222, 0.1);
+	background: rgba(222, 222, 222, 0.5);
 	backdrop-filter: blur(10px);
 	color: #ddd;
 	z-index: 95;
