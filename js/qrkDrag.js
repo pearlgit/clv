@@ -28,7 +28,7 @@ $(function () {
 			draggie.setPosition(0,UPos);
 		}
 	});
-	$(window).scroll(function(){
+	$("body").scroll(function(){
 		botPos = $("#bot").position().top;
 		contPos = $("#navCont").position().top;
 		UPos = contPos;
