@@ -1,6 +1,6 @@
 $(function () {
 	console.log("init success");
-	alert(document.documentElement.clientHeight);
+	$("#htcom").html(document.documentElement.clientHeight);
 	var UPos = Math.floor(window.innerHeight * 0.2);
 	var UL = Math.floor(window.innerHeight * 0.4);
 	var LL = Math.floor(window.innerHeight * 0.7);
@@ -9,7 +9,7 @@ $(function () {
 	var diagf = 0;
 
 	$(window).resize(function(){
-		alert(document.documentElement.clientHeight);
+		$("#htcom").html(document.documentElement.clientHeight);
 		UPos = Math.floor(window.innerHeight * 0.2);
 		UL = Math.floor(window.innerHeight * 0.4);
 		LL = Math.floor(window.innerHeight * 0.7);
