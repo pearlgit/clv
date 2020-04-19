@@ -1,23 +1,32 @@
 $(function () {
 	console.log("init success");
-	$("#htcom").html(document.documentElement.clientHeight);
-	var UPos = Math.floor(window.innerHeight * 0.2);
-	var UL = Math.floor(window.innerHeight * 0.4);
-	var LL = Math.floor(window.innerHeight * 0.7);
-	var NPos = Math.floor(window.innerHeight * 0.92);
+	var botPos = $("#bot").position().top;
+	var contPos = $("#navCont").position().top;
+	var UPos = contPos;
+	var UL = Math.floor(botPos * 0.4);
+	var LL = Math.floor(botPos * 0.7);
+	var NPos = botPos;
 	var openf = 0;
 	var diagf = 0;
 
-	$(window).resize(function(){
-		$("#htcom").html(document.documentElement.clientHeight);
-		UPos = Math.floor(window.innerHeight * 0.2);
-		UL = Math.floor(window.innerHeight * 0.4);
-		LL = Math.floor(window.innerHeight * 0.7);
-		NPos = Math.floor(window.innerHeight * 0.92);
-	});
-
 	var draggie = new Draggabilly(".dragg",{
 		containment:".navCont"
+	});
+
+	$(window).resize(function(){
+		botPos = $("#bot").position().top;
+		contPos = $("#navCont").position().top;
+		UPos = contPos;
+		UL = Math.floor(botPos * 0.4);
+		LL = Math.floor(botPos * 0.7);
+		NPos = botPos;
+
+		if(openf === 0){
+			draggie.setPosition(0,NPos);
+		}
+		else if(openf === 1){
+			draggie.setPosition(0,UPos);
+		}
 	});
 
 	draggie.on("dragEnd",function(event,pointer){
