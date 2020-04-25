@@ -1,10 +1,17 @@
 $(function () {
 	console.log("init success");
 
+	var dayList = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+	var dt = new Date(Date.now());
+	
+	function dispTime(){
+		$("#time").html(dayList[dt.getUTCDay()]+" "+(dt.getHours() < 10 ? '0' : '')+dt.getHours()+":"+ (dt.getMinutes() < 10 ? '0' : '') + dt.getMinutes() );
+	}
+	
+	dispTime();
 	setInterval(function() {
-		var dt = new Date(Date.now());
-		var dayList = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
-		$("#time").html(dayList[dt.getUTCDay()]+">"+dt.getHours()+":"+dt.getMinutes());
+		dt = new Date(Date.now());
+		dispTime();
 	}, 1000);
 
 	var msgi = 0;
@@ -21,76 +28,49 @@ $(function () {
 	msgi = Math.floor( Math.random() * (msgList.length - 1) ) + 1;
 	$("#navMsg span").html(msgList[msgi]);
 	setInterval(function msgDisp() {
-		msgi = Math.floor(Math.random() * 6) + 1;
+		msgi = Math.floor(Math.random() * (msgList.length - 1) ) + 1;
 		$("#navMsg span").html(msgList[msgi]);
 	}, 60000);
 
-	var botPos = $("#bot").position().top;
-	var contPos = $("#navCont").position().top;
-	var UPos = contPos;
-	var UL = Math.floor(botPos * 0.4);
-	var LL = Math.floor(botPos * 0.7);
-	var NPos = botPos;
-	var openf = 0;
-	var diagf = 0;
-
-	var draggie = new Draggabilly(".dragg",{
-		containment:".navCont"
+	var $draggie = $('.nav').draggabilly({
+		containment:".navBox"
 	});
 
+	var upos = 0, mpos, bpos, udl, mul, mbl, bul, openf = 0;
 
-	function draggieSetUp(){
-		draggie.setPosition(0, UPos);
-		$("#navCont").removeClass("vh150");
-		$("#navCont").addClass("vh80");
-		openf = 1;
-		$("html").addClass("noscroll");
-		$("#navbar > .navbarBtn:first-child").html("<i class='fas fa-times'></i>");
-		$("#navbar>div").css({"box-shadow":"inset #0fc 0 4px, inset rgba(221,221,221,0.4) -0 -2px"});
-		$("#nav").css({"box-shadow":"0px -80px 150px #0fc"});
+	function getViewDim(){
+		var scrH = $(window).innerHeight();
+		upos = 0;
+		mpos = Math.floor( scrH * 0.5 );
+		bpos = $("#bot").position().top;
+		udl = Math.floor( scrH * 0.15 );
+		mul = Math.floor( scrH * 0.35 );
+		mbl = Math.floor( scrH * 0.65 );
+		bul = Math.floor( scrH * 0.77 );
+
+		console.log(bpos);
 	}
 
-	function draggieSetBot(){
-		draggie.setPosition(0, NPos);
-		openf = 0;
-		diagf = 0;
-		$("html").removeClass("noscroll");
-		$("#navbar > .navbarBtn:first-child").html("<i class='fas fa-bars'></i>");
-		$("#navbar>div").css({"box-shadow":"inset #ddd 0 2px, inset rgba(221,221,221,0.4) -0 -2px"});
-		$("#nav").css({"box-shadow":""});
-}
+	getViewDim();
 
-	$("#navbar > .navbarBtn:first-child").click(function(){
-		if(openf === 1){
-			draggieSetBot();
-			$("#navCont").addClass("vh150");
-			$("#navCont").removeClass("vh80");
-		}
-		else if(openf === 0){
-			draggieSetUp();
-		}
-	});
-
-	$("#navbar > .navbarBtn:last-child").click(function(){
+	$("#navbar > .navbtn:last-child").click(function(){
 		win = window.open('https://www.stackoverflow.com/', '_blank');
 	});
 
 	$(window).resize(function(){
-		botPos = $("#bot").position().top;
-		contPos = $("#navCont").position().top;
-		UPos = contPos;
-		UL = Math.floor(botPos * 0.4);
-		LL = Math.floor(botPos * 0.7);
-		NPos = botPos;
+		getViewDim();
 
-		if(openf === 0){
-			draggie.setPosition(0,NPos);
+		if(openf == 0){
+			$draggie.draggabilly( 'setPosition', 0, bpos );
 		}
-		else if(openf === 1){
-			draggie.setPosition(0,UPos);
+		else if(openf == 1){
+			$draggie.draggabilly( 'setPosition', 0, upos );
+		}
+		else if(openf == 2){
+			$draggie.draggabilly( 'setPosition', 0, bpos );
 		}
 	});
-
+/*
 	draggie.on("dragEnd",function(event,pointer){
 		var dragPosY = draggie.position.y;
 		//console.log("L02: "+dragPosY+"/"+openf);
@@ -165,5 +145,5 @@ $(function () {
 		prevNextButtons: false,
 		percentPosition: false
 	});
-
+	*/
 });
