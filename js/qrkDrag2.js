@@ -46,7 +46,7 @@ $(function () {
 		udl = Math.floor( scrH * 0.15 );
 		mul = Math.floor( scrH * 0.35 );
 		mbl = Math.floor( scrH * 0.65 );
-		bul = Math.floor( scrH * 0.77 );
+		bul = Math.floor( scrH * 0.75 );
 
 		console.log(bpos);
 	}
@@ -58,17 +58,28 @@ $(function () {
 	});
 
 	$(window).resize(function(){
-		getViewDim();
-
 		if(openf == 0){
-			$("#nav").removeClass("bot94");
-			$("#nav").addClass("bot2");
+			$("#nav").removeAttr("style");
+			$("#nav").addClass("bot94");
 		}
 		else if(openf == 1){
-			$draggie.draggabilly( 'setPosition', 0, upos );
+			$("#nav").removeAttr("style");
+			$("#nav").addClass("bot52");
 		}
 		else if(openf == 2){
-			$draggie.draggabilly( 'setPosition', 0, bpos );
+			$("#nav").removeAttr("style");
+			$("#nav").addClass("bot94");
+		}
+	});
+	$draggie.on('dragEnd', function(event, pointer){
+		if(openf == 0){
+			openf = 1;
+		}
+		else if(openf == 1){
+			openf = 2;
+		}
+		else if(openf == 2){
+			openf = 0;
 		}
 	});
 /*
