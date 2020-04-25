@@ -61,7 +61,8 @@ $(function () {
 		getViewDim();
 
 		if(openf == 0){
-			$draggie.draggabilly( 'setPosition', 0, bpos );
+			$("#nav").removeClass("bot94");
+			$("#nav").addClass("bot2");
 		}
 		else if(openf == 1){
 			$draggie.draggabilly( 'setPosition', 0, upos );
