@@ -59,16 +59,22 @@ $(function () {
 
 	$(window).resize(function(){
 		if(openf == 0){
+			$("#nav").removeClass("bot2");
+			$("#nav").removeClass("bot52");
 			$("#nav").removeAttr("style");
 			$("#nav").addClass("bot94");
 		}
 		else if(openf == 1){
+			$("#nav").removeClass("bot52");
+			$("#nav").removeClass("bot94");
 			$("#nav").removeAttr("style");
-			$("#nav").addClass("bot52");
+			$("#nav").addClass("bot2");
 		}
 		else if(openf == 2){
+			$("#nav").removeClass("bot94");
+			$("#nav").removeClass("bot52");
 			$("#nav").removeAttr("style");
-			$("#nav").addClass("bot94");
+			$("#nav").addClass("bot52");
 		}
 	});
 	$draggie.on('dragEnd', function(event, pointer){
