@@ -1,6 +1,8 @@
 $(function () {
 	console.log("init success");
 
+	//window.scrollBy(0,500);
+
 	console.log("VH: " + $(window).innerHeight() +"; NB: "+$("#navbar").outerHeight()
 	+"; NC: "+$("#navCont").outerHeight() );
 
