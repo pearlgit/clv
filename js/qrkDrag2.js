@@ -89,6 +89,7 @@ $(function () {
 		$("#nav").removeClass("bot94");
 		$("#nav").css("top","");
 		$("#nav").addClass("bot2");
+		$("#navBox").addClass("overlay");
 		openf = 1;
 	}
 
@@ -98,10 +99,12 @@ $(function () {
 		$("#nav").removeClass("bot94");
 		$("#nav").css("top","");
 		$("#nav").addClass("bot52");
+		$("#navBox").addClass("overlay");
 		openf = 2;
 	}
 
 	function setNavBot(){
+		$("#navBox").removeClass("overlay");
 		$("html").removeClass("noscroll");
 		$("#nav").removeClass("bot52");
 		$("#nav").removeClass("bot2");
@@ -152,80 +155,5 @@ $(function () {
 			}
 		}
 	});
-/*
-	draggie.on("dragEnd",function(event,pointer){
-		var dragPosY = draggie.position.y;
-		//console.log("L02: "+dragPosY+"/"+openf);
-		if (openf === 0) {
-			//console.log("L03: Entered openf=0");
-			if (dragPosY < LL) {
-				draggieSetUp();
-			}
-			else if(dragPosY >= LL){
-				draggieSetBot();
-			}
-		}
-		else if(openf === 1){
-			//console.log("L04: Entered openf=1");
-			if(dragPosY > UL){
-				draggieSetBot();
-			}
-			else if(dragPosY <= UL){
-				draggie.setPosition(0, UPos);
-				$("#navbar > .navbarBtn:first-child").html("<i class='fas fa-times'></i>");
-				openf = 1;
-				$("html").addClass("noscroll");
-			}
-		}
-	});
 
-	draggie.on("dragMove",function(event, pointer, moveVector){
-		var moveV = moveVector.y;
-		var dragPosY = draggie.position.y;
-
-		if (openf === 0) {
-			//console.log("L03: Entered openf=0");
-			if (dragPosY < LL) {
-				$("#navbar>div").css({"box-shadow":"inset #0fc 0 4px, inset rgba(221,221,221,0.4) -0 -2px"});
-				$("#nav").css({"box-shadow":"0px -80px 150px #0fc"});
-			}
-			else if(dragPosY >= LL){
-				$("#navbar>div").css({"box-shadow":"inset #ddd 0 2px, inset rgba(221,221,221,0.4) -0 -2px"});
-				$("#nav").css({"box-shadow":""});
-			}
-		}
-		else if(openf === 1){
-			//console.log("L04: Entered openf=1");
-			if(dragPosY > UL){
-				$("#navbar>div").css({"box-shadow":"inset #ddd 0 2px, inset rgba(221,221,221,0.4) -0 -2px"});
-				$("#nav").css({"box-shadow":""});
-			}
-			else if(dragPosY <= UL){
-				$("#navbar>div").css({"box-shadow":"inset #0fc 0 4px, inset rgba(221,221,221,0.4) -0 -2px"});
-				$("#nav").css({"box-shadow":"0px -80px 150px #0fc"});
-			}
-		}
-
-		if(openf === 1 && moveV > 100 && diagf === 0){
-			$("#navCont").addClass("vh150");
-			$("#navCont").removeClass("vh80");
-			diagf = 1;
-			UIkit.notification("Please swipe again to close menu!", {status:'alert',pos:'bottom-center',timeout:2000})
-		}
-	});
-
-
-	$('.carousel-main').flickity({
-		pageDots: false,
-		prevNextButtons: false
-	});
-	// 2nd carousel, navigation
-	$('.carousel-nav').flickity({
-		asNavFor: '.carousel-main',
-		contain: true,
-		pageDots: false,
-		prevNextButtons: false,
-		percentPosition: false
-	});
-	*/
 });

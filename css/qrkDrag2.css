@@ -125,6 +125,11 @@ nav#nav{
 	height: 90%;
 }
 
+.overlay{
+	width: 100%;
+	background: #0f0;
+}
+
 #bot{
 	position: fixed;
 	height: 8%;
