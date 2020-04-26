@@ -116,7 +116,6 @@ nav#nav{
 
 #navCont{
 	width: auto;
-	overflow-y: scroll;
 	box-shadow: inset red 2px 2px, inset red -2px -2px;
 }
 

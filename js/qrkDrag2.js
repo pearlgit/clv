@@ -42,13 +42,12 @@ $(function () {
 	function getViewDim(){
 		var scrH = $(window).innerHeight();
 		upos = 0;
-		mpos = Math.floor( scrH * 0.5 );
-		bpos = $("#bot").position().top;
 		ubl = Math.floor( scrH * 0.15 );
 		mul = Math.floor( scrH * 0.35 );
+		mpos = Math.floor( scrH * 0.5 );
 		mbl = Math.floor( scrH * 0.65 );
 		bul = Math.floor( scrH * 0.75 );
-
+		bpos = $("#bot").position().top;
 		console.log(bpos);
 	}
 
@@ -98,7 +97,7 @@ $(function () {
 	}
 
 	function setNavBot(){
-		$("html").addClass("noscroll");
+		$("html").removeClass("noscroll");
 		$("#nav").removeClass("bot52");
 		$("#nav").removeClass("bot2");
 		$("#nav").css("top","");
@@ -114,17 +113,37 @@ $(function () {
 				console.log("SetTop");
 				setNavTop();
 			}
+			else if(dposy >= bul){
+				console.log("SetBottom");
+				setNavBot();
+			}
 		}
 		else if(openf == 1){
 			if (dposy > ubl) {
-				console.log("SetMiddle");
+				console.log("SetMiddleUB");
 				setNavMid();
+			}
+			else if(dposy <= ubl){
+				console.log("SetTopUB");
+				setNavTop();
 			}
 		}
 		else if(openf == 2){
 			if (dposy > mbl) {
-				console.log("SetBottom");
+				console.log("SetBottomMB");
 				setNavBot();
+			}
+			else if(dposy <= mbl && dposy > mul){
+				console.log("SetMiddleML");
+				setNavMid();
+			}
+			else if(dposy < mul){
+				console.log("SetTopMU");
+				setNavTop();
+			}
+			else if(dposy >= mul){
+				console.log("SetMiddleMU");
+				setNavMid();
 			}
 		}
 	});
