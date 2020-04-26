@@ -32,18 +32,19 @@ $(function () {
 		$("#navMsg span").html(msgList[msgi]);
 	}, 60000);
 
-	var $draggie = $('.nav').draggabilly({
+	var draggie = new Draggabilly( '.nav', {
 		containment:".navBox"
+		// options...
 	});
 
-	var upos = 0, mpos, bpos, udl, mul, mbl, bul, openf = 0;
+	var upos = 0, mpos, bpos, ubl, mul, mbl, bul, openf = 0;
 
 	function getViewDim(){
 		var scrH = $(window).innerHeight();
 		upos = 0;
 		mpos = Math.floor( scrH * 0.5 );
 		bpos = $("#bot").position().top;
-		udl = Math.floor( scrH * 0.15 );
+		ubl = Math.floor( scrH * 0.15 );
 		mul = Math.floor( scrH * 0.35 );
 		mbl = Math.floor( scrH * 0.65 );
 		bul = Math.floor( scrH * 0.75 );
@@ -77,15 +78,54 @@ $(function () {
 			$("#nav").addClass("bot52");
 		}
 	});
-	$draggie.on('dragEnd', function(event, pointer){
+
+	function setNavTop(){
+		$("html").addClass("noscroll");
+		$("#nav").removeClass("bot52");
+		$("#nav").removeClass("bot94");
+		$("#nav").css("top","");
+		$("#nav").addClass("bot2");
+		openf = 1;
+	}
+
+	function setNavMid(){
+		$("html").addClass("noscroll");
+		$("#nav").removeClass("bot2");
+		$("#nav").removeClass("bot94");
+		$("#nav").css("top","");
+		$("#nav").addClass("bot52");
+		openf = 2;
+	}
+
+	function setNavBot(){
+		$("html").addClass("noscroll");
+		$("#nav").removeClass("bot52");
+		$("#nav").removeClass("bot2");
+		$("#nav").css("top","");
+		$("#nav").addClass("bot94");
+		openf = 0;
+	}
+
+	draggie.on('dragEnd', function(event, pointer){
+		var dposy = draggie.position.y;
+		console.log("dposy: " + dposy);
 		if(openf == 0){
-			openf = 1;
+			if(dposy < bul){
+				console.log("SetTop");
+				setNavTop();
+			}
 		}
 		else if(openf == 1){
-			openf = 2;
+			if (dposy > ubl) {
+				console.log("SetMiddle");
+				setNavMid();
+			}
 		}
 		else if(openf == 2){
-			openf = 0;
+			if (dposy > mbl) {
+				console.log("SetBottom");
+				setNavBot();
+			}
 		}
 	});
 /*
