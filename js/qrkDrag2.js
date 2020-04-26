@@ -1,6 +1,9 @@
 $(function () {
 	console.log("init success");
 
+	console.log("VH: " + $(window).innerHeight() +"; NB: "+$("#navbar").outerHeight()
+	+"; NC: "+$("#navCont").outerHeight() );
+
 	var dayList = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
 	var dt = new Date(Date.now());
 	

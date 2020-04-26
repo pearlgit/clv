@@ -117,6 +117,8 @@ nav#nav{
 #navCont{
 	width: auto;
 	box-shadow: inset red 2px 2px, inset red -2px -2px;
+	align-items: center;
+	justify-content: flex-end;
 }
 
 .cont92{
