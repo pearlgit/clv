@@ -100,11 +100,13 @@ $(function () {
 		$("#nav").css("top","");
 		$("#nav").addClass("bot52");
 		$("#navBox").addClass("overlay");
+		$("#navBox").removeClass("rmoverlay");
 		openf = 2;
 	}
 
 	function setNavBot(){
 		$("#navBox").removeClass("overlay");
+		$("#navBox").addClass("rmoverlay");
 		$("html").removeClass("noscroll");
 		$("#nav").removeClass("bot52");
 		$("#nav").removeClass("bot2");
