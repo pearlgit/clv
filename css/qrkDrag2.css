@@ -25,7 +25,7 @@ p{
 body {
 	background: #222;
 	color: #fff;
-	min-height: 100vh;
+	min-height: 100%;
 	z-index: 1;
 }
 
@@ -37,8 +37,8 @@ body::before{
 	background-size: auto 80vh;
 	position: fixed;
 	top: 0;
-	width: 100vw;
-	height: 100vh;
+	width: 100%;
+	height: 100%;
 	opacity: 0.05;
 }
 
@@ -73,22 +73,22 @@ nav#nav{
 	height: 102%;
 	background: linear-gradient(
 		to bottom,
-		#000c 0vh,
-		#000f 4vh,
-		#000f 8vh,
-		#0008 102vh 
+		#000c 0%,
+		#000f 4%,
+		#000f 8%,
+		#0008 102% 
 	);
 	z-index: 92;
 	backdrop-filter: blur(2px);
 }
 .bot94{
-	bottom: -94vh;
+	bottom: -94%;
 }
 .bot2{
-	bottom: -2vh;
+	bottom: -2%;
 }
 .bot52{
-	bottom: -52vh
+	bottom: -52%
 }
 
 .noscroll{
@@ -128,7 +128,7 @@ nav#nav{
 #bot{
 	position: fixed;
 	height: 8%;
-	width: 50vw;
+	width: 50%;
 	background: #db3;
 	bottom: 0;
 	right: 0;
