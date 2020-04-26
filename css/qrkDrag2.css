@@ -75,11 +75,82 @@ nav#nav{
 		#000c 0%,
 		#000f 4%,
 		#000f 8%,
-		#0008 102% 
+		#000f 20%,
+		#000a 102%
 	);
 	z-index: 92;
-	backdrop-filter: blur(2px);
 }
+
+#tempLogo{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 92%;
+	width: 100%;
+	background: #000d;
+}
+
+@supports ( backdrop-filter: blur() ) and ( filter: blur() ) {
+	nav#nav{
+		background: linear-gradient(
+			to bottom,
+			#0008 0%,
+			#000d 4%,
+			#000d 8%,
+			#000a 20%,
+			#0006 102%
+		);
+		-webkit-backdrop-filter: blur(5px);
+				backdrop-filter: blur(5px);
+	}
+	@keyframes hbo {
+		from {/*
+			background-color: #000a;/*
+			-webkit-backdrop-filter: blur(4px);
+					backdrop-filter: blur(4px);*/
+			-webkit-filter: blur(0px);
+					filter: blur(0px);
+		}
+		to {/*
+			background: #0006;/*
+			-webkit-backdrop-filter: blur(0px);
+					backdrop-filter: blur(0px);*/
+			-webkit-filter: blur(2px);
+					filter: blur(2px);
+		}
+	}
+	#tempLogo{
+		background: #0009;
+		-webkit-backdrop-filter: blur(4px);
+				backdrop-filter: blur(4px);
+		-webkit-filter: blur(0px);
+				filter: blur(0px);
+		animation-name: hbo;
+		animation-delay: 2s;
+		animation-duration: 1s;
+	}
+}
+
+@supports not( (backdrop-filter:blur()) and (-webkit-backdrop-filter:blur()) ){
+	nav#nav{
+		background: linear-gradient(
+			to bottom,
+			#000c 0%,
+			#000f 4%,
+			#000f 8%,
+			#000f 20%,
+			#000c 102%
+		);
+	}
+	#tempLogo{
+		background: #000d;
+	}
+}
+
 .bot94{
 	bottom: -94%;
 }
@@ -87,7 +158,7 @@ nav#nav{
 	bottom: -2%;
 }
 .bot52{
-	bottom: -52%
+	bottom: -42%
 }
 
 .noscroll{
@@ -126,7 +197,7 @@ nav#nav{
 
 .overlay{
 	width: 100%;
-	background: #0f0;
+	background: red;
 }
 .rmoverlay{
 	width: 0.5%;
@@ -136,7 +207,7 @@ nav#nav{
 #bot{
 	position: fixed;
 	height: 8%;
-	width: 50%;
+	width: 0%;
 	background: #db3;
 	bottom: 0;
 	right: 0;

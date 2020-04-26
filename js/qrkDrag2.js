@@ -1,11 +1,11 @@
 $(function () {
+
+	setTimeout(function() {
+		$("#tempLogo").remove();
+	},2800);
+
 	console.log("init success");
-
-	//window.scrollBy(0,500);
-
-	console.log("VH: " + $(window).innerHeight() +"; NB: "+$("#navbar").outerHeight()
-	+"; NC: "+$("#navCont").outerHeight() );
-
+	
 	var dayList = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
 	var dt = new Date(Date.now());
 	
@@ -48,10 +48,10 @@ $(function () {
 		var scrH = $(window).innerHeight();
 		upos = 0;
 		ubl = Math.floor( scrH * 0.15 );
-		mul = Math.floor( scrH * 0.35 );
-		mpos = Math.floor( scrH * 0.5 );
-		mbl = Math.floor( scrH * 0.65 );
-		bul = Math.floor( scrH * 0.75 );
+		mul = Math.floor( scrH * 0.25 );
+		mpos = Math.floor(scrH * 0.40 );
+		mbl = Math.floor( scrH * 0.55 );
+		bul = Math.floor( scrH * 0.77 );
 		bpos = $("#bot").position().top;
 		console.log(bpos);
 	}
@@ -63,22 +63,20 @@ $(function () {
 	});
 
 	$(window).resize(function(){
+		$("#nav").css("top","");
 		if(openf == 0){
 			$("#nav").removeClass("bot2");
 			$("#nav").removeClass("bot52");
-			$("#nav").css("top","");
 			$("#nav").addClass("bot94");
 		}
 		else if(openf == 1){
 			$("#nav").removeClass("bot52");
 			$("#nav").removeClass("bot94");
-			$("#nav").css("top","");
 			$("#nav").addClass("bot2");
 		}
 		else if(openf == 2){
 			$("#nav").removeClass("bot94");
-			$("#nav").removeClass("bot52");
-			$("#nav").css("top","");
+			$("#nav").removeClass("bot2");
 			$("#nav").addClass("bot52");
 		}
 	});
@@ -89,7 +87,6 @@ $(function () {
 		$("#nav").removeClass("bot94");
 		$("#nav").css("top","");
 		$("#nav").addClass("bot2");
-		$("#navBox").addClass("overlay");
 		openf = 1;
 	}
 
@@ -99,14 +96,10 @@ $(function () {
 		$("#nav").removeClass("bot94");
 		$("#nav").css("top","");
 		$("#nav").addClass("bot52");
-		$("#navBox").addClass("overlay");
-		$("#navBox").removeClass("rmoverlay");
 		openf = 2;
 	}
 
 	function setNavBot(){
-		$("#navBox").removeClass("overlay");
-		$("#navBox").addClass("rmoverlay");
 		$("html").removeClass("noscroll");
 		$("#nav").removeClass("bot52");
 		$("#nav").removeClass("bot2");
@@ -117,44 +110,86 @@ $(function () {
 
 	draggie.on('dragEnd', function(event, pointer){
 		var dposy = draggie.position.y;
-		console.log("dposy: " + dposy);
 		if(openf == 0){
 			if(dposy < bul){
-				console.log("SetTop");
 				setNavTop();
 			}
 			else if(dposy >= bul){
-				console.log("SetBottom");
 				setNavBot();
 			}
 		}
 		else if(openf == 1){
 			if (dposy > ubl) {
-				console.log("SetMiddleUB");
 				setNavMid();
 			}
 			else if(dposy <= ubl){
-				console.log("SetTopUB");
 				setNavTop();
 			}
 		}
 		else if(openf == 2){
 			if (dposy > mbl) {
-				console.log("SetBottomMB");
 				setNavBot();
 			}
 			else if(dposy <= mbl && dposy > mul){
-				console.log("SetMiddleML");
 				setNavMid();
 			}
 			else if(dposy < mul){
-				console.log("SetTopMU");
 				setNavTop();
 			}
 			else if(dposy >= mul){
-				console.log("SetMiddleMU");
 				setNavMid();
 			}
+		}
+	});
+
+	function topgr(){
+		$("#navbar > div").css("box-shadow","inset #cf0 0 4px, inset #fff4 0 -2px");
+	}
+	function midaq(){
+		$("#navbar > div").css("box-shadow","inset #0ff 0 4px, inset #fff4 0 -2px");
+	}
+	function botgy(){
+		$("#navbar > div").css("box-shadow","inset #ddd9 0 2px, inset #fff4 0 -2px");
+	}
+
+	draggie.on('dragMove', function(event, pointer, moveVector){
+		var dposy = draggie.position.y;
+		if(openf == 0){
+			if(dposy < bul){
+				topgr();
+			}
+			else if(dposy >= bul){
+				botgy();
+			}
+		}
+		else if(openf == 1){
+			if (dposy > ubl) {
+				midaq();
+			}
+			else if(dposy <= ubl){
+				topgr();
+			}
+		}
+		else if(openf == 2){
+			if (dposy > mbl) {
+				botgy();
+			}
+			else if(dposy <= mbl && dposy > mul){
+				midaq();
+			}
+			else if(dposy < mul){
+				topgr();
+			}
+			else if(dposy >= mul){
+				midaq();
+			}
+		}
+	});
+
+	$("#mainmain").click(function() {
+		if(openf > 0){
+			setNavBot();
+			botgy();
 		}
 	});
 
