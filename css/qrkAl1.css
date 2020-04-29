@@ -48,15 +48,23 @@ html, body{
 	height: 192%;
 	bottom: -92%;
 }
-
+.noscroll{
+	overflow-y: hidden;
+}
 .navBot{
-
+	bottom: -92%;
 }
 .navMid{
+	/*bottom:0%;*
+	bottom: -15%;*/
+	/*bottom: -27%;*/
 	bottom: -42%;
+	/*bottom: -57%;*/
+	/*bottom: -77%;*/
+	/*bottom: -92%*/
 }
 .navTop{
-
+	bottom: 0%;
 }
 
 #navBody{
@@ -85,7 +93,7 @@ html, body{
 	height: 92%;
 	padding: 1em;
 }
-#navbar > div{
+.navbarBtn{
 	width: 20%;
 	height: 100%;
 	display: flex;
@@ -93,19 +101,19 @@ html, body{
 	align-items: center;
 	justify-content: center;
 }
-#navbar > div:nth-child(2){
+.navbarBtn:nth-child(2){
 	flex-grow: 1;
 }
 #bodyMain > div:first-child{
 	margin-top: 0;
 }
-.navbarGray{
+.nbGray{
 	box-shadow: inset #dddb 0 2px, inset #ddd6 0 -2px;
 }
-.navbarGreen{
+.nbGreen{
 	box-shadow: inset #cf0b 0 4px, inset #ddd6 0 -2px;
 }
-.navbarAqua{
+.nbAqua{
 	box-shadow: inset #0ffb 0 4px, inset #ddd6 0 -2px;
 }
 
