@@ -1,0 +1,121 @@
+*{
+	margin:0;
+	padding: 0;
+	box-sizing: border-box;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	/*box-shadow: inset red 2px 2px, inset red -2px -2px;*/
+}
+html, body{
+	width: 100%;
+	min-height: 100%;
+	/*margin-right: calc(100vw - 100%);*/
+	background: #222;
+	color: #fff;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: flex-end;
+}
+#bodyMain{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	min-height: 92vh;
+	width: 100%;
+	justify-content: flex-end;
+	padding: 1em;
+}
+#bodyMain > div{
+	width: 100%;
+	background: #4448;
+	border-radius: 1em;
+	margin: 1em;
+	margin-bottom: 0;
+	min-height: 3em;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+}
+#navContainer{
+	position: fixed;
+	width: 100%;
+	height: 192%;
+	bottom: -92%;
+}
+
+.navBot{
+
+}
+.navMid{
+	bottom: -42%;
+}
+.navTop{
+
+}
+
+#navBody{
+	position: fixed;
+	height: 100%;
+	width: 100%;
+	/*bottom: -92%;*/
+	background: linear-gradient(
+		to bottom,
+		#000a 0%,
+		#000f 4%,
+		#000f 12%,
+		#0008 44%,
+		#000d 100%
+	);
+	backdrop-filter: blur(5px);
+}
+#navbar{
+	height: 8%;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+}
+#navContent{
+	height: 92%;
+	padding: 1em;
+}
+#navbar > div{
+	width: 20%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+#navbar > div:nth-child(2){
+	flex-grow: 1;
+}
+#bodyMain > div:first-child{
+	margin-top: 0;
+}
+.navbarGray{
+	box-shadow: inset #dddb 0 2px, inset #ddd6 0 -2px;
+}
+.navbarGreen{
+	box-shadow: inset #cf0b 0 4px, inset #ddd6 0 -2px;
+}
+.navbarAqua{
+	box-shadow: inset #0ffb 0 4px, inset #ddd6 0 -2px;
+}
+
+#bodyMain > div#intro{
+	background: gold;
+	height: 50vh;
+	padding: 1em;
+	align-items: flex-start;
+	justify-content: flex-start;
+}
+#pageName{
+	font-size: larger;
+}
