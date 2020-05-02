@@ -130,4 +130,12 @@ $(function(){
 			}
 		}
 	});
+
+	$("#navbar > div:last-child").click(function() {
+		$("#bodyMain > div:last-child").remove();
+	});
+	$("#navbar > div:first-child").click(function() {
+		$("#bodyMain > div:last-child").remove();
+	});
+
 });
