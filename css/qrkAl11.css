@@ -1,4 +1,4 @@
-*{
+* {
 	margin:0;
 	padding: 0;
 	box-sizing: border-box;
@@ -7,10 +7,11 @@
 	-khtml-user-select: none;
 	-moz-user-select: none;
 	-ms-user-select: none;
-	user-select: none;
-	/*box-shadow: inset red 2px 2px, inset red -2px -2px;*/
+	user-select: none;/*
+	box-shadow: inset red 2px 2px, inset red -2px -2px;*/
 }
-html, body{
+
+html, body {
 	width: 100%;
 	min-height: 100%;
 	/*margin-right: calc(100vw - 100%);*/
@@ -39,29 +40,84 @@ body::before{
 	min-height: 92vh;
 	width: 100%;
 	justify-content: flex-end;
-	padding: 1em;
+	padding-bottom: 20vh;
 }
-#bodyMain > div{
-	width: 100%;
-	background: #4448;
-	border-radius: 1em;
-	margin-bottom: 1em;
-	min-height: 3em;
+
+#bodyMain div.mainRow{
 	display: flex;
 	flex-direction: row;
 	align-items: center;
 	justify-content: center;
+	height: 3em;
+	margin-bottom: 1em;
+	background: #4448;
+	border-radius: 1em;
 }
+
+#bodyMain div#intro{
+	flex-direction: column;
+	background: goldenrod;
+	min-height: 50vh;
+	border-radius: 0 0 1em 1em;
+}
+
+#bodyMain > div.sticky, #bodyMain > div.stickySlides{
+	position: -webkit-sticky;
+	position: sticky;
+	top:-1px;
+}
+
+
+
+/***********************	Carousel 	***********************/
+
+.carousel {
+	background: transparent;
+}
+.carousel-cell {
+	width: 100%;
+	margin-right: 10px;
+	background: #8C8;
+	border-radius: 1em;
+}
+.carousel-nav{
+	height: 3em;
+	background: goldenrod;
+	border-radius: 0.5em;
+	padding: 0 1em;
+}
+.carousel-nav .carousel-cell {
+	height: 2em;
+	border-radius: 1em;
+	margin-top: 0.5em;
+	width: auto;
+	line-height: 2em;
+	text-align: center;
+	padding: 0 1em;
+}
+.carousel-nav .carousel-cell.is-nav-selected {
+	background: #ED2;
+	border-radius: 0.5em;
+	transition: background 0.5s, border-radius 0.5s;
+}
+.carousel-main{
+	height: calc(92vh - 3em);
+	margin-bottom: 1em;
+}
+
+.carousel-main .carousel-cell{
+	height: calc(92vh - 3em);
+	overflow-y: scroll;
+}
+
+
+/***********************	Navigation 	***********************/
+
 #navContainer{
 	position: fixed;
 	height: 192%;
 	bottom: -92%;
-}
-.navContHide{
 	width: 2px;
-}
-.navContShow{
-	width: 100%;
 }
 .noscroll{
 	overflow-y: hidden;
@@ -123,9 +179,7 @@ body::before{
 .navbarBtn:nth-child(2){
 	flex-grow: 1;
 }
-#bodyMain > div:first-child{
-	margin-top: 0;
-}
+
 .nbGray{
 	box-shadow: inset #dddb 0 2px, inset #ddd6 0 -2px;
 }
@@ -136,11 +190,29 @@ body::before{
 	box-shadow: inset #0ffb 0 4px, inset #ddd6 0 -2px;
 }
 
+
+
+/*
+#bodyMain > div{
+	width: 100%;
+	background: #4448;
+	border-radius: 1em;
+	margin-bottom: 0;
+	min-height: 3em;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+}
+
+#bodyMain > div:first-child{
+	margin-top: 0;
+}
+
 #bodyMain > div#intro{
 	background: goldenrod;
 	height: 50vh;
 	padding: 1em;
-	flex-direction: column;
 	align-items: center;
 	justify-content: center;
 	scroll-snap-align: start;
@@ -155,42 +227,4 @@ body::before{
 }
 #pageName{
 	font-size: larger;
-}
-
-
-
-
-.carousel {
-	background: transparent;
-	margin-bottom: 1vh;
-}
-
-.carousel-cell {
-	width: 100%;
-	height: 56vh;
-	margin-right: 10px;
-	background: #222;
-	border-radius: 2vh;
-	padding: 1em;
-}
-
-
-.carousel-nav{
-
-}
-
-.carousel-nav .carousel-cell {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	height: 6vh;
-	width: auto;
-	white-space: nowrap;
-	border-radius: 3vh;
-	color: #ddd;
-}
-
-.carousel-nav .carousel-cell.is-nav-selected {
-	background: aqua;
-	color: #222;
 }

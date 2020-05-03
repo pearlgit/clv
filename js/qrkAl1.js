@@ -135,7 +135,21 @@ $(function(){
 		$("#bodyMain > div:last-child").remove();
 	});
 	$("#navbar > div:first-child").click(function() {
-		$("#bodyMain > div:last-child").remove();
+		$("#bodyMain").append("<div>Row4</div>");
 	});
+
+	$("#bodyMain .sticky").wrapInner( "<span></span>");
+	$("#bodyMain .sticky span").attr("uk-parallax","opacity: 0.4, 1; viewport: 0.8");
+	$("#bodyMain .sticky:first-child span").attr("uk-parallax","opacity: 0.4, 1; viewport: 0.4");
+	
+	/*
+	var stickyIntroOffset = $("#bodyMain div:nth-child(2)").offset().top;
+	$("html").scroll(function(){
+
+		if( $("html").scrollTop() < ( stickyIntroOffset / 2 )){
+			$("html").scrollTop( stickyIntroOffset );
+		}
+	});
+	*/
 
 });
