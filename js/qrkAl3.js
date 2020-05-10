@@ -4,8 +4,7 @@ $(function () {
 		"prevNextButtons": false,
 		"adaptiveHeight": true,
 		"contain": true,
-		"cellAlign": "left",
-		"dragThreshold": 100
+		"cellAlign": "left"
 	});
 
 	$carousel.on('settle', function (index) {
