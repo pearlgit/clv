@@ -55,6 +55,7 @@ html, body{
 	border-radius: 1em;
 	margin-top: 1em;
 	padding: 1em;
+	scroll-snap-type: x mandatory;
 }
 .pageCard{
 	width: auto;
