@@ -157,45 +157,46 @@ html, body{
 	height: 100%;
 	width: 100%;
 	/*bottom: -92%;*/
-	background: linear-gradient(
+	background: #444;
+	background-image: linear-gradient(
 		to bottom,
-		#000a 0%,
-		#000f 4%,
-		#000f 12%,
-		#0008 44%,
-		#000d 100%
+		rgba(0, 0, 0, 0.65) 0%,
+		rgb(0, 0, 0) 4%,
+		rgb(0, 0, 0) 12%,
+		rgba(0, 0, 0, 0.55) 44%,
+		rgba(0, 0, 0, 0.85) 100%
 	);
 	background: -webkit-linear-gradient(
 		to bottom,
-		#000a 0%,
-		#000f 4%,
-		#000f 12%,
-		#0008 44%,
-		#000d 100%
+		rgba(0, 0, 0, 0.65) 0%,
+		rgb(0, 0, 0) 4%,
+		rgb(0, 0, 0) 12%,
+		rgba(0, 0, 0, 0.55) 44%,
+		rgba(0, 0, 0, 0.85) 100%
 	);
 	background: -moz-linear-gradient(
 		to bottom,
-		#000a 0%,
-		#000f 4%,
-		#000f 12%,
-		#0008 44%,
-		#000d 100%
+		rgba(0, 0, 0, 0.65) 0%,
+		rgb(0, 0, 0) 4%,
+		rgb(0, 0, 0) 12%,
+		rgba(0, 0, 0, 0.55) 44%,
+		rgba(0, 0, 0, 0.85) 100%
 	);
 	background: -ms-linear-gradient(
 		to bottom,
-		#000a 0%,
-		#000f 4%,
-		#000f 12%,
-		#0008 44%,
-		#000d 100%
+		rgba(0, 0, 0, 0.65) 0%,
+		rgb(0, 0, 0) 4%,
+		rgb(0, 0, 0) 12%,
+		rgba(0, 0, 0, 0.55) 44%,
+		rgba(0, 0, 0, 0.85) 100%
 	);
 	background: -o-linear-gradient(
 		to bottom,
-		#000a 0%,
-		#000f 4%,
-		#000f 12%,
-		#0008 44%,
-		#000d 100%
+		rgba(0, 0, 0, 0.65) 0%,
+		rgb(0, 0, 0) 4%,
+		rgb(0, 0, 0) 12%,
+		rgba(0, 0, 0, 0.55) 44%,
+		rgba(0, 0, 0, 0.85) 100%
 	);
 	backdrop-filter: blur(5px);
 }
