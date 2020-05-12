@@ -159,6 +159,27 @@ $(function () {
 		}
 	});
 
+	var pNFCH = Math.ceil( $("#pageNavFlickCont").outerHeight() );
+	var cardRowT = $("#crdRow").offset();
+	var crdSnpLim = Math.ceil( ( cardRowT.top - pNFCH ) / 2 );
+	console.log( "CRT: " + crdSnpLim );
+	var scrFlg = 0;
+
+	$(window).scroll(function(){
+		var bdyScr = $("html").scrollTop();
+		console.log("bdScr: " + bdyScr);
+		if( bdyScr <= crdSnpLim && scrFlg == 0 ){
+			bdyScr = $("html").scrollTop(0);
+			scrFlg = 0;
+		}
+		else if( bdyScr > crdSnpLim && scrFlg == 0 ){
+			bdyScr = $("html").scrollTop(crdSnpLim * 2);
+			scrFlg = 1;
+		}
+		else if( bdyScr < (crdSnpLim*2) && scrFlg == 1 )
+
+	});
+
 
 });
 

@@ -1,0 +1,275 @@
+*{
+	margin:0;
+	padding: 0;
+	box-sizing: border-box;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;/*
+	box-shadow: inset red 1px 1px, inset red -1px -1px;*/
+}
+html, body{
+	width: 100%;
+	min-height: 100%;
+	/*margin-right: calc(100vw - 100%);*/
+	background: #222;
+	background-image: url(../media/YPNlogo205.png);
+	background-position: center;
+	background-repeat: round;
+	background-size: 50vw auto;
+	color: #ddd;/*
+	box-shadow: inset darkgoldenrod 5px 5px, inset darkgoldenrod -5px -5px;*/
+}/*
+body::before{
+	content: '';
+	position: fixed;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background-image: url(../media/YPNlogo.png);
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: auto 70%;
+	opacity: 0.05;
+	z-index: 1;
+	pointer-events: none;
+}*/
+#pagePillsCont{
+	height: 8vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	position: sticky;
+	top: calc(3vh - 1px);
+	z-index: 905;
+	background: #222;
+	color: #bbb;
+	border-bottom: solid 2px #dddd;
+	/*
+	box-shadow: inset red 2px 2px, inset red -2px -2px;*/
+}
+.pillContBG {
+	position:absolute;
+	top:0;
+	z-index: 1;
+	width: 5vw;
+	pointer-events: none;
+	height:100%;
+}
+.pillContBGlt {
+	left: 0;
+	background:linear-gradient(90deg, #222 0%, #222 10%, transparent);
+}
+.pillContBGrt {
+	right: 0;
+	background:linear-gradient(90deg, transparent, #222);
+}
+.pagePill{
+	height: 5vh;
+	padding: 0 1em;
+	margin-right: 1em;
+	background: #333;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	border-radius: 2.5vh;
+	white-space: nowrap;
+}
+.pagePill.is-selected{
+	border: dotted #ddd 2px;
+}
+.pagePill.is-nav-selected{
+	border: solid #ddd 2px;
+}
+
+#pageMatterCont{
+	z-index: 999;
+}
+.pageMatter{
+	width: 100%;
+	padding: 2vh 2vw;
+	min-height: 90vh;/*
+	box-shadow: inset red 2px 2px, inset red -2px -2px;*/
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	box-shadow: inset red 2px 2px, inset red -2px -2px;
+}
+.pageRow{/*
+	box-shadow: inset red 2px 2px, inset red -2px -2px;*/
+	padding: 2vh 2vw;
+	margin-top: 2vh;
+	border-radius: 0.5em;
+	background: #0008;
+	border: solid 2px #fffa;
+}
+.pageMatEnd{
+	text-align: center;
+	height: 25vh;
+	background: transparent;
+	border: none;
+}
+.pageMatter > .pageRow:first-child{
+	min-height: 50vh;
+	display: flex;
+	flex-direction: column;
+}
+#introCont{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	min-height: 50vh;
+	background: #ddd;
+	color: #222;
+}
+#intro{
+	display: flex;
+	width: 100%;
+	padding: 1em 10%;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	z-index: 904;
+	position: sticky;
+	top: -1px;
+	text-align: center;
+}
+#intro > .head{
+	font-size: x-large;
+}
+.divLine{
+	height: 2px; width: 100%;
+	background: #222;
+}
+#intro > .content{
+	color: #666;
+}
+#introFix{
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	max-height: 4vh;
+	height: 3vh;
+	font-size: 2vh;
+	background: #ddd;
+	color: #222;
+	position: sticky;
+	top: -1px;
+	z-index: 910;
+}
+
+/***********************	Navigation 	***********************/
+
+#navContainer{
+	position: fixed;
+	height: 192%;
+	bottom: -92%;
+	width: 2px;
+	z-index: 99999;
+}
+.noscroll{
+	overflow-y: hidden;
+}
+.navBot{
+	bottom: -92%;
+}
+.navMid{
+	/*bottom:0%;*
+	bottom: -15%;*/
+	/*bottom: -27%;*/
+	bottom: -42%;
+	/*bottom: -57%;*/
+	/*bottom: -77%;*/
+	/*bottom: -92%*/
+}
+.navTop{
+	bottom: 0%;
+}
+
+#navBody{
+	position: fixed;
+	height: 100%;
+	width: 100%;
+	/*bottom: -92%;*
+	background: #444;*/
+	background-image: linear-gradient(
+		to bottom,
+		rgba(0, 0, 0, 0.65) 0%,
+		rgb(0, 0, 0) 4%,
+		rgb(0, 0, 0) 12%,
+		rgba(0, 0, 0, 0.55) 44%,
+		rgba(0, 0, 0, 0.85) 100%
+	);
+	background-image: -webkit-linear-gradient(
+		to bottom,
+		rgba(0, 0, 0, 0.65) 0%,
+		rgb(0, 0, 0) 4%,
+		rgb(0, 0, 0) 12%,
+		rgba(0, 0, 0, 0.55) 44%,
+		rgba(0, 0, 0, 0.85) 100%
+	);
+	background-image: -moz-linear-gradient(
+		to bottom,
+		rgba(0, 0, 0, 0.65) 0%,
+		rgb(0, 0, 0) 4%,
+		rgb(0, 0, 0) 12%,
+		rgba(0, 0, 0, 0.55) 44%,
+		rgba(0, 0, 0, 0.85) 100%
+	);
+	background-image: -ms-linear-gradient(
+		to bottom,
+		rgba(0, 0, 0, 0.65) 0%,
+		rgb(0, 0, 0) 4%,
+		rgb(0, 0, 0) 12%,
+		rgba(0, 0, 0, 0.55) 44%,
+		rgba(0, 0, 0, 0.85) 100%
+	);
+	background-image: -o-linear-gradient(
+		to bottom,
+		rgba(0, 0, 0, 0.65) 0%,
+		rgb(0, 0, 0) 4%,
+		rgb(0, 0, 0) 12%,
+		rgba(0, 0, 0, 0.55) 44%,
+		rgba(0, 0, 0, 0.85) 100%
+	);
+	backdrop-filter: blur(5px);
+}
+#navbar{
+	height: 8%;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+}
+#navContent{
+	height: 84%;
+}
+.navbarBtn{
+	width: 20%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+.navbarBtn:hover, .navbarBtn:active{
+	background: #0005;
+	color: darkgoldenrod;
+}
+.navbarBtn:nth-child(2){
+	flex-grow: 1;
+}
+
+.nbGray{
+	box-shadow: inset #dddb 0 2px, inset #ddd6 0 -2px;
+}
+.nbGreen{
+	box-shadow: inset #cf0b 0 4px, inset #ddd6 0 -2px;
+}
+.nbAqua{
+	box-shadow: inset #0ffb 0 4px, inset #ddd6 0 -2px;
+}
