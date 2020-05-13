@@ -1,7 +1,4 @@
 $(function () {
-
-	console.log("init success");
-
 	$pageMatterFlick = new Flickity('.pageMatterFlick', {
 		"contain": true,
 		"pageDots": false,
@@ -10,11 +7,6 @@ $(function () {
 		"contain": true,
 		"cellAlign": "left"
 	});
-
-	$(".pageMatter").append("<div class='pageRow pageMatEnd'>*&nbsp;*&nbsp;*&nbsp;*&nbsp;*&nbsp;*&nbsp;*<br/><< &nbsp; Swipe to change sections. &nbsp; >></div>");
-	$pageMatterFlick.resize();
-
-
 
 	var emobj = {
 		1: {
@@ -249,25 +241,22 @@ $(function () {
 	}
 	putEmo();
 
+	$(".pageMatter").append("<div class='pageRow pageMatEnd'>*&nbsp;*&nbsp;*&nbsp;*&nbsp;*&nbsp;*&nbsp;*<br/><< &nbsp; Swipe to change sections. &nbsp; >></div>");
+
 //	$("#pageSlideCountIndi").html( emobj[23][3] );
-
-
 
 	var draggie = new Draggabilly('.drag',{
 		containment: '.navCont', axis: 'y'
 	});
 
 	var openf = 0, scrH, bul, mbl, mul, tbl;
-
-	
 	function calNavLimits(){
 		scrH = $(window).innerHeight();
 		tbl = Math.floor(scrH * 0.15);
 		mul = Math.floor(scrH * 0.27);
 		mbl = Math.floor(scrH * 0.57);
 		bul = Math.floor(scrH * 0.77);
-	}
-	
+	}	
 	calNavLimits();
 
 	function setNavTop(){
@@ -279,7 +268,6 @@ $(function () {
 		openf = 1;
 		$("#navContainer").addClass("fullWidth");
 	}
-
 	function setNavMid(){
 		$("html").addClass("noscroll");
 		$("#navBody").removeClass("navTop navBot");
@@ -287,7 +275,6 @@ $(function () {
 		$("#navBody").addClass("navMid");
 		openf = 2;
 	}
-
 	function setNavBot(){
 		$("html").removeClass("noscroll");
 		$("#navContainer").addClass("noWidth");
@@ -387,33 +374,25 @@ $(function () {
 		}
 	});
 
-
-	$pageMatterFlick.on('change', function (index) {
-		console.log("Page Changed to: " + (index + 1));
+	function setMatterTop(){
 		$("html,body").scrollTop( $("#pageMatterCont").offset().top - $("#introFix").outerHeight() - $("#pagePillsCont").outerHeight() + 2);
+	}
+	$pageMatterFlick.on('change', function (index) {
+		setMatterTop();
 		$("#pageSlideCountIndi").html("(" + (index + 1) + "/" + $pageMatterFlick.slides.length + ")");
 	});
 
 	$pageMatterFlick.on('pointerUp', function (event, pointer) {
-//		$pageMatterFlick.resize();
 		setTimeout(function () {
 			$pageMatterFlick.reloadCells();
 		}, 500);
 	});
 
 	$(".addPageRow").click(function () {
-		console.log("clicked");
-		
 		$("<div class=\"pageCard\">Page 01 Row3</div>").insertAfter(".pageMatter.is-selected > .pageCard:nth-last-child(2)");
 	});
-
 	$(".remPageRow").click(function () {
 		$(".pageMatter.is-selected > .pageCard:nth-last-child(2)").remove();
-	});
-
-	$("html").scroll(function(){
-		var scrollF = 0;
-		
 	});
 
 });

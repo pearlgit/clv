@@ -3,6 +3,7 @@
 	padding: 0;
 	box-sizing: border-box;
 	font-family: 'PT Serif', Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+	font-size: 14px;
 	-webkit-touch-callout: none;
 	-webkit-user-select: none;
 	-khtml-user-select: none;
@@ -13,6 +14,7 @@
 }
 h1, h2, h3, h4, h5, h6{
 	font-family: 'Ubuntu Mono','Courier New', Courier, monospace;
+	text-decoration: underline;
 }
 html, body{
 	width: 100%;
@@ -72,7 +74,6 @@ body::before{
 .pagePill, .navPill{
 	height: 5vh;
 	padding: 0 1em;
-	margin-right: 1em;
 	display: flex;
 	flex-direction: row;
 	align-items: center;
@@ -166,6 +167,28 @@ body::before{
 	top: -2px;
 	z-index: 910;
 }
+/***********************	Question Start	***********************/
+
+.qrkQuesNo{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	background: #ddd;
+	color: #222;
+	border-radius: 0.5em 0.5em 0 0;
+}
+.qrkQuesContent{
+	color: #ddd;
+	font-size: 1.2em;
+}
+.qrkQuesContent > .tglBtn{
+	width: 100%
+}
+.qrkQuesAns{
+	color: ;
+}
+
+/***********************	Question End	***********************/
 
 /***********************	Navigation 	***********************/
 
@@ -258,6 +281,7 @@ body::before{
 }
 #navContent{
 	height: 84%;
+	text-align: center;
 	box-shadow: inset red 2px 2px, inset red -2px -2px;
 }
 .navbarBtn{
@@ -285,12 +309,26 @@ body::before{
 .nbAqua{
 	box-shadow: inset rgba(0, 255, 255, 0.733) 0 4px, inset rgba(221, 221, 221, 0.4) 0 -2px;
 }
-
 .navMatter{
 	box-shadow: inset red 2px 2px, inset red -2px -2px;
-	display: flex;
-	flex-direction: column;
 	width: 100%;
-	height: 50vh;
-	flex-grow: 1;
+	height: 76vh;
+	overflow: hidden;
+	display: grid;
+	grid-template-columns: repeat(3, auto);
+	grid-gap: 0.5em;
+	align-items: stretch;
+	justify-content: stretch;
+	padding: 0.5em;
+}
+.navMatterPill{
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	flex-grow: 0;
+	background: #ddd;
+	color: #222;
+	margin-top: 1em;
+	border-radius: 0.5em;
 }
