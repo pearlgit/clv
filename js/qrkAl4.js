@@ -11,8 +11,10 @@ $(function () {
 		"cellAlign": "left"
 	});
 
-	$(".pageMatter").append("<div class='pageRow pageMatEnd'>*&nbsp;*&nbsp;*&nbsp;*&nbsp;*&nbsp;*&nbsp;*</div>");
+	$(".pageMatter").append("<div class='pageRow pageMatEnd'>*&nbsp;*&nbsp;*&nbsp;*&nbsp;*&nbsp;*&nbsp;*<br/><< &nbsp; Swipe to change sections. &nbsp; >></div>");
 	$pageMatterFlick.resize();
+
+
 
 	var emobj = {
 		1: {
@@ -249,14 +251,6 @@ $(function () {
 
 //	$("#pageSlideCountIndi").html( emobj[23][3] );
 
-	var pageMatterOffset = $("#pageMatterCont").offset();
-	var pageMatterOffsetTop = Math.ceil(pageMatterOffset.top - $("#introFix").outerHeight() - $("#pagePillsCont").outerHeight());
-	console.log("pmfT: " + Math.ceil(pageMatterOffset.top - $("#introFix").outerHeight() - $("#pagePillsCont").outerHeight()));
-	$pageMatterFlick.on('change', function (index) {
-		console.log("Settled at: " + (index + 1));
-		$("html").scrollTop(pageMatterOffsetTop);
-		$("#pageSlideCountIndi").html("(" + (index + 1) + "/" + $pageMatterFlick.slides.length + ")");
-	});
 
 
 	var draggie = new Draggabilly('.drag',{
@@ -278,10 +272,12 @@ $(function () {
 
 	function setNavTop(){
 		$("html").addClass("noscroll");
+		$("#navContainer").removeClass("noWidth");
 		$("#navBody").removeClass("navMid navBot");
 		$("#navBody").css("top","");
 		$("#navBody").addClass("navTop");
 		openf = 1;
+		$("#navContainer").addClass("fullWidth");
 	}
 
 	function setNavMid(){
@@ -294,10 +290,12 @@ $(function () {
 
 	function setNavBot(){
 		$("html").removeClass("noscroll");
+		$("#navContainer").addClass("noWidth");
 		$("#navBody").removeClass("navMid navTop");
 		$("#navBody").css("top","");
 		$("#navBody").addClass("navBot");
 		openf = 0;
+		$("#navContainer").removeClass("fullWidth");
 	}
 
 	$(window).resize(function(){
@@ -387,6 +385,35 @@ $(function () {
 				botClr();
 			}
 		}
+	});
+
+
+	$pageMatterFlick.on('change', function (index) {
+		console.log("Page Changed to: " + (index + 1));
+		$("html,body").scrollTop( $("#pageMatterCont").offset().top - $("#introFix").outerHeight() - $("#pagePillsCont").outerHeight() + 2);
+		$("#pageSlideCountIndi").html("(" + (index + 1) + "/" + $pageMatterFlick.slides.length + ")");
+	});
+
+	$pageMatterFlick.on('pointerUp', function (event, pointer) {
+//		$pageMatterFlick.resize();
+		setTimeout(function () {
+			$pageMatterFlick.reloadCells();
+		}, 500);
+	});
+
+	$(".addPageRow").click(function () {
+		console.log("clicked");
+		
+		$("<div class=\"pageCard\">Page 01 Row3</div>").insertAfter(".pageMatter.is-selected > .pageCard:nth-last-child(2)");
+	});
+
+	$(".remPageRow").click(function () {
+		$(".pageMatter.is-selected > .pageCard:nth-last-child(2)").remove();
+	});
+
+	$("html").scroll(function(){
+		var scrollF = 0;
+		
 	});
 
 });

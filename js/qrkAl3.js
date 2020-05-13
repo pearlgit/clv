@@ -158,7 +158,7 @@ $(function () {
 			}
 		}
 	});
-
+/*
 	var pNFCH = Math.ceil( $("#pageNavFlickCont").outerHeight() );
 	var cardRowT = $("#crdRow").offset();
 	var crdSnpLim = Math.ceil( ( cardRowT.top - pNFCH ) / 2 );
@@ -178,7 +178,7 @@ $(function () {
 		}
 		else if( bdyScr < (crdSnpLim*2) && scrFlg == 1 )
 
-	});
+	});*/
 
 
 });

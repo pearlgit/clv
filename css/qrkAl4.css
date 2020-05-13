@@ -2,6 +2,7 @@
 	margin:0;
 	padding: 0;
 	box-sizing: border-box;
+	font-family: 'PT Serif', Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 	-webkit-touch-callout: none;
 	-webkit-user-select: none;
 	-khtml-user-select: none;
@@ -9,6 +10,9 @@
 	-ms-user-select: none;
 	user-select: none;/*
 	box-shadow: inset red 1px 1px, inset red -1px -1px;*/
+}
+h1, h2, h3, h4, h5, h6{
+	font-family: 'Ubuntu Mono','Courier New', Courier, monospace;
 }
 html, body{
 	width: 100%;
@@ -18,7 +22,7 @@ html, body{
 	background-image: url(../media/YPNlogo205.png);
 	background-position: center;
 	background-repeat: round;
-	background-size: 50vw auto;
+	background-size: auto 20vmax;
 	color: #ddd;/*
 	box-shadow: inset darkgoldenrod 5px 5px, inset darkgoldenrod -5px -5px;*/
 }/*
@@ -36,19 +40,18 @@ body::before{
 	z-index: 1;
 	pointer-events: none;
 }*/
-#pagePillsCont{
-	height: 8vh;
+#pagePillsCont, #navPillsCont{
+	height: 5vh;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	position: sticky;
-	top: calc(3vh - 1px);
+	top: calc(4vh - 2px);
 	z-index: 905;
 	background: #222;
-	color: #bbb;
-	border-bottom: solid 2px #dddd;
-	/*
-	box-shadow: inset red 2px 2px, inset red -2px -2px;*/
+	color: #bbb;/*
+	border-bottom: solid 2px rgba(221, 221, 221, 0.867);*/
+	box-shadow: #ddd 0 2px 0;
 }
 .pillContBG {
 	position:absolute;
@@ -64,24 +67,26 @@ body::before{
 }
 .pillContBGrt {
 	right: 0;
-	background:linear-gradient(90deg, transparent, #222);
+	background:linear-gradient(90deg, transparent 0%, #222 90%, #222);
 }
-.pagePill{
+.pagePill, .navPill{
 	height: 5vh;
 	padding: 0 1em;
 	margin-right: 1em;
-	background: #333;
 	display: flex;
 	flex-direction: row;
 	align-items: center;
-	border-radius: 2.5vh;
 	white-space: nowrap;
+	color: #aaa;
 }
-.pagePill.is-selected{
-	border: dotted #ddd 2px;
+.pagePill.is-selected, .navPill.is-selected{
+	background: #444;
+	color: #ddd;
 }
-.pagePill.is-nav-selected{
-	border: solid #ddd 2px;
+.pagePill.is-nav-selected, .navPill.is-nav-selected{
+	box-shadow: none;
+	color: #222;
+	background: #ddd;
 }
 
 #pageMatterCont{
@@ -90,28 +95,28 @@ body::before{
 .pageMatter{
 	width: 100%;
 	padding: 2vh 2vw;
-	min-height: 90vh;/*
+	min-height: 91vh;/*
 	box-shadow: inset red 2px 2px, inset red -2px -2px;*/
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-end;
-	box-shadow: inset red 2px 2px, inset red -2px -2px;
 }
-.pageRow{/*
+.pageCard{/*
 	box-shadow: inset red 2px 2px, inset red -2px -2px;*/
 	padding: 2vh 2vw;
 	margin-top: 2vh;
 	border-radius: 0.5em;
-	background: #0008;
-	border: solid 2px #fffa;
+	background: rgba(0, 0, 0, 0.533);
+	border: solid 2px rgba(255, 255, 255, 0.667);
 }
 .pageMatEnd{
 	text-align: center;
 	height: 25vh;
 	background: transparent;
 	border: none;
+	margin-top: 1em;
 }
-.pageMatter > .pageRow:first-child{
+.pageMatter > .pageCard:first-child{
 	min-height: 50vh;
 	display: flex;
 	flex-direction: column;
@@ -145,7 +150,7 @@ body::before{
 	background: #222;
 }
 #intro > .content{
-	color: #666;
+	color: #555;
 }
 #introFix{
 	display: flex;
@@ -153,12 +158,12 @@ body::before{
 	align-items: center;
 	justify-content: center;
 	max-height: 4vh;
-	height: 3vh;
+	height: 4vh;
 	font-size: 2vh;
 	background: #ddd;
 	color: #222;
 	position: sticky;
-	top: -1px;
+	top: -2px;
 	z-index: 910;
 }
 
@@ -168,8 +173,14 @@ body::before{
 	position: fixed;
 	height: 192%;
 	bottom: -92%;
-	width: 2px;
 	z-index: 99999;
+	background: transparent;
+}
+.noWidth{
+	width: 2px;
+}
+.fullWidth{
+	width: 100%;
 }
 .noscroll{
 	overflow-y: hidden;
@@ -247,6 +258,7 @@ body::before{
 }
 #navContent{
 	height: 84%;
+	box-shadow: inset red 2px 2px, inset red -2px -2px;
 }
 .navbarBtn{
 	width: 20%;
@@ -257,7 +269,7 @@ body::before{
 	justify-content: center;
 }
 .navbarBtn:hover, .navbarBtn:active{
-	background: #0005;
+	background: rgba(0, 0, 0, 0.333);
 	color: darkgoldenrod;
 }
 .navbarBtn:nth-child(2){
@@ -265,11 +277,20 @@ body::before{
 }
 
 .nbGray{
-	box-shadow: inset #dddb 0 2px, inset #ddd6 0 -2px;
+	box-shadow: inset rgba(221, 221, 221, 0.733) 0 2px, inset rgba(221, 221, 221, 0.4) 0 -2px;
 }
 .nbGreen{
-	box-shadow: inset #cf0b 0 4px, inset #ddd6 0 -2px;
+	box-shadow: inset rgba(204, 255, 0, 0.733) 0 4px, inset rgba(221, 221, 221, 0.4) 0 -2px;
 }
 .nbAqua{
-	box-shadow: inset #0ffb 0 4px, inset #ddd6 0 -2px;
+	box-shadow: inset rgba(0, 255, 255, 0.733) 0 4px, inset rgba(221, 221, 221, 0.4) 0 -2px;
+}
+
+.navMatter{
+	box-shadow: inset red 2px 2px, inset red -2px -2px;
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	height: 50vh;
+	flex-grow: 1;
 }
