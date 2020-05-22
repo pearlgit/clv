@@ -38,7 +38,7 @@ html, body{
 	color: #ddd;/*
 	box-shadow: inset darkgoldenrod 5px 5px, inset darkgoldenrod -5px -5px;*/
 }
-div:not(#pageSlideCountIndi){
+div:not(#introFix){
 	font-family: 'PT Serif', 'Cambria', 'Cochin', 'Georgia', 'Times', 'Times New Roman', serif;
 }
 /*
