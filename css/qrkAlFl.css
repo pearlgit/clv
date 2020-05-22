@@ -2,7 +2,8 @@
 	margin:0;
 	padding: 0;
 	box-sizing: border-box;
-	font-family: 'PT Serif', Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+	font-family: 'Ubuntu Mono', 'Droid Sans Mono', 'monospace', monospace;/*
+	font-family: 'PT Serif', Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;*/
 	font-size: 14px;
 	-webkit-touch-callout: none;
 	-webkit-user-select: none;
