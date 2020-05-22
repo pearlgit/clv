@@ -2,8 +2,6 @@
 	margin:0;
 	padding: 0;
 	box-sizing: border-box;
-	font-family: 'Ubuntu Mono', 'Droid Sans Mono', 'monospace', monospace;/*
-	font-family: 'PT Serif', Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;*/
 	font-size: 14px;
 	-webkit-touch-callout: none;
 	-webkit-user-select: none;
@@ -39,7 +37,11 @@ html, body{
 	background-size: auto 20vmax;
 	color: #ddd;/*
 	box-shadow: inset darkgoldenrod 5px 5px, inset darkgoldenrod -5px -5px;*/
-}/*
+}
+div:not(#pageSlideCountIndi){
+	font-family: 'PT Serif', 'Cambria', 'Cochin', 'Georgia', 'Times', 'Times New Roman', serif;
+}
+/*
 body::before{
 	content: '';
 	position: fixed;
