@@ -222,7 +222,7 @@ $(function () {
 		43: {
 			1: "(ᐞ︵ᐞ )",
 			2: "(ᐞ⸏ᐞ  )",
-			3: "(ᐞ‿ᐞ  )",
+			3: "(ᐞ&#8255;ᐞ  )",
 		},
 		44: {
 			1: "(ᰟ︵ᰟ )",
@@ -349,7 +349,7 @@ $(function () {
 
 	$(".pageMatter").append("<div class='pageRow pageMatEnd'>*&nbsp;*&nbsp;*&nbsp;*&nbsp;*&nbsp;*&nbsp;*<br/><< &nbsp; Swipe to change sections. &nbsp; >></div>");
 
-//	$("#pageSlideCountIndi").html( emobj[23][3] );
+	$("#pageSlideCountIndi").html( emobj[43][3] );
 
 	var draggie = new Draggabilly('.drag',{
 		containment: '.navCont', axis: 'y', handle: '.qrkHandle'
